@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 41%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 35 92% 51%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 41%;
+
+    --radius: 0.5rem;
+
+    /* Theme-specific colors */
+    --theme-primary: 221 83% 41%;
+    --theme-secondary: 217 91% 60%;
+    --theme-accent: 35 92% 51%;
+    --theme-dark: 222 47% 11%;
+    --theme-light: 210 40% 98%;
+    --theme-muted: 215 16% 47%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 221 83% 41%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 35 92% 51%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+
+    /* Theme-specific colors in dark mode */
+    --theme-primary: 217 91% 60%;
+    --theme-secondary: 221 83% 41%;
+    --theme-accent: 35 92% 51%;
+    --theme-dark: 210 40% 98%;
+    --theme-light: 222 47% 11%;
+    --theme-muted: 215 20% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for the theme */
+.bg-theme-gradient {
+  background: linear-gradient(135deg, hsl(var(--theme-primary)) 0%, hsl(var(--theme-secondary)) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--theme-primary)) 0%, hsl(var(--theme-secondary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.accent-border {
+  border-color: hsl(var(--theme-accent));
+}
+
+.accent-glow {
+  box-shadow: 0 0 15px hsla(var(--theme-accent), 0.5);
+}

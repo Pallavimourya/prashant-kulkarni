@@ -131,11 +131,7 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            <p>Demo credentials:</p>
-            <p>Email: admin@example.com</p>
-            <p>Password: password</p>
-          </div>
+         
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-center text-sm text-muted-foreground">

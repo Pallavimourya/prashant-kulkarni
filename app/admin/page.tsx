@@ -1,175 +1,190 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { FileText, Calendar, ImageIcon, Users, ArrowUpRight, Eye } from "lucide-react"
+import { useEffect } from "react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { initMockDataService } from "@/lib/mock-data-service"
+import { BarChart, Activity, Users, FileText, Calendar, MessageSquare } from "lucide-react"
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({
-    blogs: [],
-    events: [],
-    media: [],
-    contacts: [],
-  })
-  const [isLoading, setIsLoading] = useState(true)
-
   useEffect(() => {
-    // Load data from localStorage
-    try {
-      const blogs = localStorage.getItem("admin_blogs")
-      const events = localStorage.getItem("admin_events")
-      const contacts = localStorage.getItem("admin_contacts")
-      const media = localStorage.getItem("admin_media")
-
-      setStats({
-        blogs: blogs ? JSON.parse(blogs) : [],
-        events: events ? JSON.parse(events) : [],
-        contacts: contacts ? JSON.parse(contacts) : [],
-        media: media ? JSON.parse(media) : [],
-      })
-    } catch (error) {
-      console.error("Error loading dashboard data:", error)
-    } finally {
-      setIsLoading(false)
-    }
+    // Initialize mock data service when the dashboard loads
+    initMockDataService()
   }, [])
-
-  if (isLoading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          <p className="mt-2 text-sm text-muted-foreground">Loading dashboard data...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // Get recent blogs
-  const recentBlogs = [...stats.blogs]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
-
-  // Get upcoming events
-  const upcomingEvents = [...stats.events]
-    .filter((event) => event.status === "Upcoming")
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, 3)
-
-  // Get recent contacts
-  const recentContacts = [...stats.contacts]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-      </div>
+      <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Blogs</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.blogs.length}</div>
-            <p className="text-xs text-muted-foreground">{recentBlogs.length} recent posts</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Events</CardTitle>
-            <Calendar className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.events.length}</div>
-            <p className="text-xs text-muted-foreground">{upcomingEvents.length} upcoming events</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Media</CardTitle>
-            <ImageIcon className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.media.length}</div>
-            <p className="text-xs text-muted-foreground">Images, videos, and documents</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Contacts</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.contacts.length}</div>
-            <p className="text-xs text-muted-foreground">{recentContacts.length} new messages</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="col-span-2">
-          <CardHeader>
-            <CardTitle>Recent Blog Posts</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentBlogs.length > 0 ? (
-                recentBlogs.map((blog) => (
-                  <div key={blog.id} className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-medium">{blog.title}</h3>
-                      <p className="text-sm text-muted-foreground">{new Date(blog.date).toLocaleDateString()}</p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm text-muted-foreground">
-                        <Eye className="mr-1 inline-block h-4 w-4" />
-                        {blog.views}
-                      </span>
-                      <Link href={`/admin/blogs/edit/${blog.id}`}>
-                        <Button variant="ghost" size="sm">
-                          <ArrowUpRight className="h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-muted-foreground">No blog posts found</p>
-              )}
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Blogs</p>
+                <p className="text-3xl font-bold">24</p>
+              </div>
+              <div className="p-2 bg-theme-primary/10 rounded-full">
+                <FileText className="h-6 w-6 text-theme-primary" />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center text-sm text-muted-foreground">
+              <Activity className="mr-1 h-4 w-4 text-green-500" />
+              <span className="text-green-500 font-medium">+12%</span>
+              <span className="ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Upcoming Events</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {upcomingEvents.length > 0 ? (
-                upcomingEvents.map((event) => (
-                  <div key={event.id} className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-medium">{event.title}</h3>
-                      <p className="text-sm text-muted-foreground">{new Date(event.date).toLocaleDateString()}</p>
-                    </div>
-                    <Badge variant="outline">{event.status}</Badge>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-muted-foreground">No upcoming events found</p>
-              )}
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Events</p>
+                <p className="text-3xl font-bold">18</p>
+              </div>
+              <div className="p-2 bg-theme-primary/10 rounded-full">
+                <Calendar className="h-6 w-6 text-theme-primary" />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center text-sm text-muted-foreground">
+              <Activity className="mr-1 h-4 w-4 text-green-500" />
+              <span className="text-green-500 font-medium">+5%</span>
+              <span className="ml-1">from last month</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Contacts</p>
+                <p className="text-3xl font-bold">142</p>
+              </div>
+              <div className="p-2 bg-theme-primary/10 rounded-full">
+                <MessageSquare className="h-6 w-6 text-theme-primary" />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center text-sm text-muted-foreground">
+              <Activity className="mr-1 h-4 w-4 text-green-500" />
+              <span className="text-green-500 font-medium">+18%</span>
+              <span className="ml-1">from last month</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Visitors</p>
+                <p className="text-3xl font-bold">28.4K</p>
+              </div>
+              <div className="p-2 bg-theme-primary/10 rounded-full">
+                <Users className="h-6 w-6 text-theme-primary" />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center text-sm text-muted-foreground">
+              <Activity className="mr-1 h-4 w-4 text-green-500" />
+              <span className="text-green-500 font-medium">+24%</span>
+              <span className="ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          <TabsTrigger value="reports">Reports</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview" className="space-y-4">
+          <Card className="col-span-3">
+            <CardHeader>
+              <CardTitle>Website Traffic</CardTitle>
+              <CardDescription>Website traffic over the last 30 days</CardDescription>
+            </CardHeader>
+            <CardContent className="px-2">
+              <div className="h-[300px] flex items-center justify-center">
+                <BarChart className="h-16 w-16 text-muted-foreground" />
+                <p className="ml-4 text-muted-foreground">Traffic visualization will appear here</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Recent Activity</CardTitle>
+                <CardDescription>Latest actions on your website</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div key={i} className="flex items-center">
+                      <div className="w-2 h-2 rounded-full bg-theme-primary mr-3"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">New blog post published</p>
+                        <p className="text-xs text-muted-foreground">2 hours ago</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Popular Content</CardTitle>
+                <CardDescription>Most viewed pages this month</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="flex items-center">
+                      <div className="w-6 h-6 rounded-full bg-theme-primary/10 flex items-center justify-center mr-3">
+                        <span className="text-xs font-bold text-theme-primary">{i}</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">The Future of Food Franchising in India</p>
+                        <p className="text-xs text-muted-foreground">4,256 views</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        <TabsContent value="analytics">
+          <Card>
+            <CardHeader>
+              <CardTitle>Analytics</CardTitle>
+              <CardDescription>Detailed website analytics will appear here</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[400px] flex items-center justify-center">
+                <p className="text-muted-foreground">Analytics data will be displayed here</p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="reports">
+          <Card>
+            <CardHeader>
+              <CardTitle>Reports</CardTitle>
+              <CardDescription>Generate and view reports</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[400px] flex items-center justify-center">
+                <p className="text-muted-foreground">Reports will be displayed here</p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

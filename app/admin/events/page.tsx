@@ -15,7 +15,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Search, Filter, Calendar, Edit, Eye, Trash } from "lucide-react"
+import { Plus, Search, Filter, Trash, Edit } from "lucide-react"
 import { getEvents, deleteEvent, initMockDataService } from "@/lib/mock-data-service"
 import { useRouter } from "next/navigation"
 
@@ -81,14 +81,9 @@ export default function EventsPage() {
               <DropdownMenuItem onClick={() => setSearchTerm("")}>All Events</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setSearchTerm("upcoming")}>Upcoming</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setSearchTerm("past")}>Past</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSearchTerm("draft")}>Drafts</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setSearchTerm("cancelled")}>Cancelled</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Button variant="outline" className="flex gap-1">
-            <Calendar className="h-4 w-4" />
-            Calendar View
-          </Button>
         </div>
       </div>
 
@@ -114,7 +109,7 @@ export default function EventsPage() {
                   <TableCell>
                     <Badge
                       variant={
-                        event.status === "Upcoming" ? "default" : event.status === "Past" ? "secondary" : "outline"
+                        event.status === "Upcoming" ? "default" : event.status === "Past" ? "outline" : "secondary"
                       }
                     >
                       {event.status}
@@ -125,9 +120,6 @@ export default function EventsPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Button variant="ghost" size="icon" onClick={() => router.push(`/admin/events/edit/${event.id}`)}>
                         <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" onClick={() => window.open(`/events/${event.id}`, "_blank")}>
-                        <Eye className="h-4 w-4" />
                       </Button>
                       <Button
                         variant="ghost"

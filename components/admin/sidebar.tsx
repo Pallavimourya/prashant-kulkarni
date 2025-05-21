@@ -12,42 +12,19 @@ import {
   LogOut,
   ChevronDown,
   X,
+  Home,
+  Users,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useAdmin } from "@/components/admin/admin-provider"
 
-const navItems = [
-  {
-    title: "Dashboard",
-    href: "/admin",
-    icon: <LayoutDashboard className="h-5 w-5" />,
-  },
-  {
-    title: "Blog Posts",
-    href: "/admin/blogs",
-    icon: <FileText className="h-5 w-5" />,
-  },
-  {
-    title: "Events",
-    href: "/admin/events",
-    icon: <Calendar className="h-5 w-5" />,
-  },
-  {
-    title: "Contacts",
-    href: "/admin/contacts",
-    icon: <MessageSquare className="h-5 w-5" />,
-  },
-  {
-    title: "Media",
-    href: "/admin/media",
-    icon: <ImageIcon className="h-5 w-5" />,
-  },
-  {
-    title: "Settings",
-    href: "/admin/settings",
-    icon: <Settings className="h-5 w-5" />,
-  },
+const menuItems = [
+  { href: "/admin", label: "Dashboard", icon: Home },
+  { href: "/admin/events", label: "Events", icon: Calendar },
+  { href: "/admin/blogs", label: "Blogs", icon: FileText },
+  { href: "/admin/contacts", label: "Contacts", icon: Users },
+  { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
 
 export default function AdminSidebar() {
@@ -80,20 +57,24 @@ export default function AdminSidebar() {
           {/* Navigation */}
           <nav className="flex-1 overflow-y-auto py-4 px-3">
             <ul className="space-y-1">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                      pathname === item.href ? "bg-theme-primary text-white" : "text-gray-700 hover:bg-gray-100",
-                    )}
-                  >
-                    {item.icon}
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              {menuItems.map((item) => {
+                const Icon = item.icon
+                const isActive = pathname === item.href
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                        isActive ? "bg-theme-primary text-white" : "text-gray-700 hover:bg-gray-100",
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
 
             {/* Content Management Section */}

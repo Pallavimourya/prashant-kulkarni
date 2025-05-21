@@ -56,7 +56,7 @@ export default function VideoHero() {
         poster="/placeholder.svg?height=1080&width=1920"
         preload="auto"
       >
-        <source src="/images/video.mp4" type="video/mp4" />
+        <source src="/public/Images/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

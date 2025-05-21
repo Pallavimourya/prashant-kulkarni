@@ -1,37 +1,9 @@
-import { MongoClient, ServerApiVersion, type ObjectId } from "mongodb"
+import { MongoClient, type Db } from "mongodb"
+import type { ObjectId } from "mongodb"
 
-// Connection URI
-const uri =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://techzuperstudio:admin123@cluster0.44kq4op.mongodb.net/prashant-kulkarni?retryWrites=true&w=majority&appName=Cluster0"
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-})
-
-// Database Name
-const dbName = "prashant-kulkarni"
-
-// Connect to MongoDB
-export async function connectToDatabase() {
-  try {
-    await client.connect()
-    console.log("Connected to MongoDB")
-    return client.db(dbName)
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error)
-    throw error
-  }
-}
-
-// Types for our database collections
-export type Blog = {
-  _id?: ObjectId
+// Types for our collections
+export interface Blog {
+  _id?: ObjectId | string
   title: string
   slug: string
   excerpt: string
@@ -45,8 +17,8 @@ export type Blog = {
   updatedAt?: Date
 }
 
-export type Event = {
-  _id?: ObjectId
+export interface Event {
+  _id?: ObjectId | string
   title: string
   location: string
   date: string
@@ -58,8 +30,8 @@ export type Event = {
   updatedAt?: Date
 }
 
-export type Contact = {
-  _id?: ObjectId
+export interface Contact {
+  _id?: ObjectId | string
   name: string
   email: string
   subject: string
@@ -69,24 +41,21 @@ export type Contact = {
   createdAt?: Date
 }
 
-export type Media = {
-  _id?: ObjectId
+export interface Media {
+  _id?: ObjectId | string
   name: string
-  url: string
   type: string
   size: string
-  dimensions: string
-  folder: string
-  parent?: string
-  isFolder?: boolean
+  dimensions?: string
   uploadedOn: string
+  url: string
   altText?: string
-  caption?: string
+  folder: string
   createdAt?: Date
 }
 
-export type Settings = {
-  _id?: ObjectId
+export interface Settings {
+  _id?: ObjectId | string
   general: {
     siteName: string
     tagline: string
@@ -115,12 +84,52 @@ export type Settings = {
   updatedAt?: Date
 }
 
-export type User = {
-  _id?: ObjectId
+export interface User {
+  _id?: ObjectId | string
   email: string
   password: string
   name?: string
   role: string
   createdAt?: Date
   updatedAt?: Date
+}
+
+export interface ActivityLog {
+  _id?: ObjectId | string
+  userId: string
+  action: string
+  details: string
+  ip?: string
+  userAgent?: string
+  createdAt: Date
+}
+
+// MongoDB connection
+const MONGODB_URI = process.env.MONGODB_URI || ""
+const MONGODB_DB = process.env.MONGODB_DB || "prashant-kulkarni"
+
+// Check if MongoDB URI is defined
+if (!MONGODB_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable")
+}
+
+// Global variables
+let cachedClient: MongoClient | null = null
+let cachedDb: Db | null = null
+
+export async function connectToDatabase(): Promise<Db> {
+  // If we have a cached connection, use it
+  if (cachedClient && cachedDb) {
+    return cachedDb
+  }
+
+  // Create a new connection
+  const client = await MongoClient.connect(MONGODB_URI)
+  const db = client.db(MONGODB_DB)
+
+  // Cache the connection
+  cachedClient = client
+  cachedDb = db
+
+  return db
 }

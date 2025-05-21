@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { LogOut } from "lucide-react"
 
-export default function AdminHeader() {
+export function AdminHeader() {
   const router = useRouter()
 
   const handleLogout = () => {
@@ -23,4 +23,4 @@ export default function AdminHeader() {
       </div>
     </header>
   )
-}
+} 

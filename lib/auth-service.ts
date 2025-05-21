@@ -68,7 +68,11 @@ export const authService = {
     // In a real application, you would validate against a database
     // This is a simplified example
     if (username === 'admin' && password === 'admin') {
-      const token = await authService.generateToken({ username })
+      const token = await authService.generateToken({ 
+        email: username,
+        role: 'admin',
+        password: '' // Password should not be included in token
+      })
       return { token }
     }
     throw new Error('Invalid credentials')

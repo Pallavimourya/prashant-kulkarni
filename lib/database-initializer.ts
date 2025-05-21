@@ -10,7 +10,7 @@ const DEFAULT_DATA = {
       excerpt:
         "Chatar Patar, a renowned name in the culinary realm, has revolutionized the street food scene in India...",
       content:
-        "<p>Chatar Patar, a renowned name in the culinary realm, has revolutionized the street food scene in India. With a vision to standardize the street food experience, Chatar Patar has created a unique business model that combines traditional flavors with modern hygiene standards.</p><p>Founded by visionary entrepreneurs, the brand has expanded to multiple locations across the country, offering a consistent and high-quality experience to food lovers everywhere.</p><p>The success of Chatar Patar demonstrates how traditional Indian street food can be transformed into a scalable business while preserving authentic flavors and culinary traditions.</p>",
+        "<p>Chatar Patar, a renowned name in the culinary realm, has revolutionized the street food scene in India. With a vision to standardize street food and make it accessible to all, Chatar Patar has created a unique franchise model that has seen tremendous success.</p><p>The brand focuses on hygiene, quality, and consistency, ensuring that customers get the same great taste no matter which outlet they visit. This approach has helped them expand rapidly across the country.</p><p>Their innovative menu combines traditional flavors with modern presentation, appealing to both the older generation who crave authentic tastes and the younger crowd looking for something Instagram-worthy.</p>",
       category: "Newsroom",
       status: "Published",
       date: "June 15, 2023",
@@ -25,7 +25,7 @@ const DEFAULT_DATA = {
       excerpt:
         "As India's food industry continues to evolve, franchising presents unique opportunities for entrepreneurs...",
       content:
-        "<p>As India's food industry continues to evolve, franchising presents unique opportunities for entrepreneurs looking to enter the market with reduced risk and established business models.</p><p>The food franchise sector in India is experiencing rapid growth, driven by changing consumer preferences, urbanization, and an increasing appetite for diverse culinary experiences.</p><p>Successful franchisors are those who can balance standardization with localization, adapting their offerings to suit regional tastes while maintaining consistent quality and service standards across locations.</p><p>Technology integration, sustainability practices, and innovative business models will be key differentiators for food franchises looking to thrive in the competitive Indian market.</p>",
+        "<p>As India's food industry continues to evolve, franchising presents unique opportunities for entrepreneurs looking to enter the market. The franchise model offers a proven business system, established brand recognition, and ongoing support.</p><p>In recent years, we've seen a shift towards more specialized and niche food concepts. Consumers are increasingly looking for unique dining experiences, and franchises that can offer something different are seeing great success.</p><p>Technology is also playing a crucial role in the future of food franchising. From online ordering systems to customer loyalty programs, franchises that embrace digital transformation are positioning themselves for long-term growth.</p>",
       category: "Business",
       status: "Published",
       date: "May 22, 2023",
@@ -43,7 +43,7 @@ const DEFAULT_DATA = {
       status: "Upcoming",
       attendees: 250,
       description:
-        "Join us for the premier blockchain and AI event in Dubai, featuring industry leaders and innovators discussing the future of technology and its applications in business.",
+        "Join us for the premier blockchain and AI event in Dubai. This conference brings together industry leaders, innovators, and entrepreneurs to discuss the latest trends and developments in blockchain technology and artificial intelligence.",
       image: "https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -55,7 +55,7 @@ const DEFAULT_DATA = {
       status: "Upcoming",
       attendees: 180,
       description:
-        "A gathering of food industry leaders to discuss the future of food business in India, exploring trends, challenges, and opportunities in the evolving market.",
+        "A gathering of food industry leaders to discuss the future of food business in India. Topics will include franchising opportunities, digital transformation in the food industry, and sustainable food practices.",
       image: "https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -67,7 +67,7 @@ const DEFAULT_DATA = {
       email: "rahul.sharma@example.com",
       subject: "Speaking Engagement Request",
       message:
-        "I would like to invite you to speak at our upcoming business conference in Mumbai. We believe your insights on food franchising would be valuable to our audience of aspiring entrepreneurs.",
+        "I would like to invite you to speak at our upcoming business conference in Mumbai. We believe your insights on entrepreneurship and innovation would be valuable to our audience. Please let me know if you're interested and available.",
       date: "May 15, 2023",
       status: "New",
       createdAt: new Date(),
@@ -77,7 +77,7 @@ const DEFAULT_DATA = {
       email: "priya.patel@example.com",
       subject: "Franchise Inquiry",
       message:
-        "I'm interested in opening a franchise of one of your food brands. Could you provide more information about the investment requirements, support provided, and the application process?",
+        "I'm interested in opening a franchise of one of your food brands. Could you provide more information about the investment required, support provided, and the application process? I have experience in the food industry and am looking to expand my business portfolio.",
       date: "May 14, 2023",
       status: "New",
       createdAt: new Date(),
@@ -149,17 +149,16 @@ const DEFAULT_DATA = {
   ],
 }
 
-// Initialize the database with default data
-export const initializeDatabase = async () => {
+// Initialize the database with default data if empty
+export async function initializeDatabase() {
   try {
-    console.log("Initializing database...")
     const db = await connectToDatabase()
 
     // Create collections if they don't exist
     const collections = await db.listCollections().toArray()
     const collectionNames = collections.map((c) => c.name)
 
-    // Create indexes for better performance
+    // Create collections and indexes
     if (!collectionNames.includes("blogs")) {
       await db.createCollection("blogs")
       await db.collection("blogs").createIndex({ slug: 1 }, { unique: true })
@@ -186,12 +185,16 @@ export const initializeDatabase = async () => {
       await db.collection("users").createIndex({ email: 1 }, { unique: true })
     }
 
+    if (!collectionNames.includes("activity_logs")) {
+      await db.createCollection("activity_logs")
+      await db.collection("activity_logs").createIndex({ createdAt: 1 })
+    }
+
     // Check if blogs collection is empty
     const blogsCount = await db.collection("blogs").countDocuments()
 
     // If blogs collection is empty, insert default blogs
     if (blogsCount === 0) {
-      console.log("Inserting default blogs...")
       await db.collection("blogs").insertMany(DEFAULT_DATA.blogs)
     }
 
@@ -200,7 +203,6 @@ export const initializeDatabase = async () => {
 
     // If events collection is empty, insert default events
     if (eventsCount === 0) {
-      console.log("Inserting default events...")
       await db.collection("events").insertMany(DEFAULT_DATA.events)
     }
 
@@ -209,7 +211,6 @@ export const initializeDatabase = async () => {
 
     // If contacts collection is empty, insert default contacts
     if (contactsCount === 0) {
-      console.log("Inserting default contacts...")
       await db.collection("contacts").insertMany(DEFAULT_DATA.contacts)
     }
 
@@ -218,7 +219,6 @@ export const initializeDatabase = async () => {
 
     // If media collection is empty, insert default media
     if (mediaCount === 0) {
-      console.log("Inserting default media...")
       await db.collection("media").insertMany(DEFAULT_DATA.media)
     }
 
@@ -227,7 +227,6 @@ export const initializeDatabase = async () => {
 
     // If settings collection is empty, insert default settings
     if (settingsCount === 0) {
-      console.log("Inserting default settings...")
       await db.collection("settings").insertOne(DEFAULT_DATA.settings)
     }
 
@@ -236,14 +235,12 @@ export const initializeDatabase = async () => {
 
     // If users collection is empty, insert default users
     if (usersCount === 0) {
-      console.log("Inserting default users...")
       await db.collection("users").insertMany(DEFAULT_DATA.users)
     }
 
-    console.log("Database initialization complete!")
-    return true
+    return { success: true, message: "Database initialized successfully" }
   } catch (error) {
     console.error("Error initializing database:", error)
-    return false
+    return { success: false, message: "Error initializing database", error }
   }
 }

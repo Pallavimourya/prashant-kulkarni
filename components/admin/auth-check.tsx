@@ -3,45 +3,49 @@
 import type React from "react"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { checkAuth } from "@/lib/mock-data-service"
+import { Loader2 } from "lucide-react"
 
 export default function AuthCheck({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+  const pathname = usePathname()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const router = useRouter()
 
   useEffect(() => {
-    const checkAuthentication = async () => {
-      try {
-        const authenticated = checkAuth()
-
-        if (!authenticated) {
-          router.push("/admin/login")
-        } else {
-          setIsAuthenticated(true)
-        }
-      } catch (error) {
-        console.error("Auth check error:", error)
-        router.push("/admin/login")
-      } finally {
-        setIsLoading(false)
-      }
+    // Skip auth check for login page
+    if (pathname === "/admin/login") {
+      setIsLoading(false)
+      return
     }
 
-    checkAuthentication()
-  }, [router])
+    // Check if user is authenticated
+    const isAuth = checkAuth()
+
+    if (!isAuth) {
+      router.push("/admin/login")
+    } else {
+      setIsAuthenticated(true)
+    }
+
+    setIsLoading(false)
+  }, [pathname, router])
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          <p className="mt-2 text-sm text-muted-foreground">Loading...</p>
+          <Loader2 className="h-8 w-8 animate-spin text-gray-500 mx-auto" />
+          <p className="mt-2 text-gray-600">Loading admin panel...</p>
         </div>
       </div>
     )
   }
 
-  return isAuthenticated ? <>{children}</> : null
+  if (!isAuthenticated && pathname !== "/admin/login") {
+    return null
+  }
+
+  return <>{children}</>
 }

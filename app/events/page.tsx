@@ -1,62 +1,11 @@
-"use client"
-
-import { useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { initMockDataService, useAppStore } from "@/lib/mock-data-service"
 
 export default function EventsPage() {
-  const { events, refreshData } = useAppStore()
-
-  useEffect(() => {
-    // Initialize mock data service
-    initMockDataService()
-    // Load data into the store
-    refreshData()
-  }, [refreshData])
-
-  // Filter events by status
-  const upcomingEvents = events.filter((event: any) => event.status === "Upcoming")
-  const pastEvents = events.filter((event: any) => event.status === "Past")
-
-  // Fallback events if no events exist
-  const defaultUpcomingEvents = [
-    {
-      id: 1,
-      title: "AIBC Eurasia Dubai",
-      date: "March 14, 2023",
-      location: "Dubai, UAE",
-      image: "/images/prashant.jpg",
-      description:
-        "Prashant will be speaking on food innovation and entrepreneurship at this premier business conference.",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Food Business Summit",
-      date: "April 22, 2023",
-      location: "Mumbai, India",
-      image: "/images/prashant.jpg",
-      description: "A keynote on scaling food businesses and creating sustainable franchise models.",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Entrepreneurship Conference",
-      date: "May 10, 2023",
-      location: "Bangalore, India",
-      image: "/images/prashant.jpg",
-      description: "Panel discussion on transitioning from corporate careers to successful entrepreneurship.",
-      link: "#",
-    },
-  ]
-
-  const displayUpcomingEvents = upcomingEvents.length > 0 ? upcomingEvents : defaultUpcomingEvents
-
   return (
     <main className="pt-20">
       {/* Hero Section */}
@@ -84,10 +33,39 @@ export default function EventsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayUpcomingEvents.map((event: any) => (
+            {[
+              {
+                id: 1,
+                title: "AIBC Eurasia Dubai",
+                date: "March 14, 2023",
+                location: "Dubai, UAE",
+                image: "/placeholder.svg?height=300&width=500",
+                description:
+                  "Prashant will be speaking on food innovation and entrepreneurship at this premier business conference.",
+                link: "#",
+              },
+              {
+                id: 2,
+                title: "Food Business Summit",
+                date: "April 22, 2023",
+                location: "Mumbai, India",
+                image: "/placeholder.svg?height=300&width=500",
+                description: "A keynote on scaling food businesses and creating sustainable franchise models.",
+                link: "#",
+              },
+              {
+                id: 3,
+                title: "Entrepreneurship Conference",
+                date: "May 10, 2023",
+                location: "Bangalore, India",
+                image: "/placeholder.svg?height=300&width=500",
+                description: "Panel discussion on transitioning from corporate careers to successful entrepreneurship.",
+                link: "#",
+              },
+            ].map((event) => (
               <Card key={event.id} className="overflow-hidden border-none shadow-lg">
                 <div className="relative h-48 w-full">
-                  <Image src={event.image || "/images/prashant.jpg"} alt={event.title} fill className="object-cover" />
+                  <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">{event.title}</h3>
@@ -100,7 +78,7 @@ export default function EventsPage() {
                     <span className="text-sm">{event.location}</span>
                   </div>
                   <p className="text-muted-foreground mb-4">{event.description}</p>
-                  <Link href={event.link || `/events/${event.id}`}>
+                  <Link href={event.link}>
                     <Button className="w-full bg-black hover:bg-gray-800 text-white">Event Details</Button>
                   </Link>
                 </CardContent>
@@ -139,7 +117,7 @@ export default function EventsPage() {
                 ].map((title, index) => (
                   <div key={index} className="relative overflow-hidden rounded-lg shadow-md">
                     <div className="relative h-48 w-full bg-gray-200">
-                      <Image src={`/images/prashant.jpg`} alt={title} fill className="object-cover" />
+                      <Image src={`/placeholder.svg?height=300&width=500`} alt={title} fill className="object-cover" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="bg-black bg-opacity-60 rounded-full p-3">
                           <svg
@@ -177,49 +155,28 @@ export default function EventsPage() {
                   <div key={year}>
                     <h3 className="text-xl font-bold mb-4">{year}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {pastEvents.length > 0
-                        ? pastEvents.slice(0, 4).map((event: any) => (
-                            <Card key={event.id} className="overflow-hidden">
-                              <CardContent className="p-6">
-                                <h4 className="font-bold mb-2">{event.title}</h4>
-                                <div className="flex items-center text-muted-foreground mb-2">
-                                  <Calendar className="h-4 w-4 mr-2" />
-                                  <span className="text-sm">{event.date}</span>
-                                </div>
-                                <div className="flex items-center text-muted-foreground mb-4">
-                                  <MapPin className="h-4 w-4 mr-2" />
-                                  <span className="text-sm">{event.location}</span>
-                                </div>
-                                <Link href={`/events/${event.id}`}>
-                                  <Button variant="link" className="p-0 h-auto font-medium text-black">
-                                    View Details
-                                  </Button>
-                                </Link>
-                              </CardContent>
-                            </Card>
-                          ))
-                        : [1, 2, 3, 4].map((item) => (
-                            <Card key={item} className="overflow-hidden">
-                              <CardContent className="p-6">
-                                <h4 className="font-bold mb-2">{`${year} Conference ${item}`}</h4>
-                                <div className="flex items-center text-muted-foreground mb-2">
-                                  <Calendar className="h-4 w-4 mr-2" />
-                                  <span className="text-sm">{`${["January", "March", "June", "October"][item - 1]} ${item * 5}, ${year}`}</span>
-                                </div>
-                                <div className="flex items-center text-muted-foreground mb-4">
-                                  <MapPin className="h-4 w-4 mr-2" />
-                                  <span className="text-sm">
-                                    {["Mumbai", "Delhi", "Bangalore", "Hyderabad"][item - 1]}, India
-                                  </span>
-                                </div>
-                                <Link href="#">
-                                  <Button variant="link" className="p-0 h-auto font-medium text-black">
-                                    View Details
-                                  </Button>
-                                </Link>
-                              </CardContent>
-                            </Card>
-                          ))}
+                      {[1, 2, 3, 4].map((item) => (
+                        <Card key={item} className="overflow-hidden">
+                          <CardContent className="p-6">
+                            <h4 className="font-bold mb-2">{`${year} Conference ${item}`}</h4>
+                            <div className="flex items-center text-muted-foreground mb-2">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              <span className="text-sm">{`${["January", "March", "June", "October"][item - 1]} ${item * 5}, ${year}`}</span>
+                            </div>
+                            <div className="flex items-center text-muted-foreground mb-4">
+                              <MapPin className="h-4 w-4 mr-2" />
+                              <span className="text-sm">
+                                {["Mumbai", "Delhi", "Bangalore", "Hyderabad"][item - 1]}, India
+                              </span>
+                            </div>
+                            <Link href="#">
+                              <Button variant="link" className="p-0 h-auto font-medium text-black">
+                                View Details
+                              </Button>
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -266,7 +223,12 @@ export default function EventsPage() {
               </Link>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Image src="/images/prashant.jpg" alt="Prashant Kulkarni Speaking" fill className="object-cover" />
+              <Image
+                src="/placeholder.svg?height=800&width=600"
+                alt="Prashant Kulkarni Speaking"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

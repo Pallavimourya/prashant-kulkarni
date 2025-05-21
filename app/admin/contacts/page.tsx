@@ -14,15 +14,22 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import { Badge } from "@/components/ui/badge"
-import { MoreHorizontal, Search, Filter, Mail, Download, Trash, Eye } from "lucide-react"
-import { getContacts, updateContact, deleteContact, initMockDataService } from "@/lib/mock-data-service"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Search, Filter, Trash, Mail, Check } from "lucide-react"
+import { getContacts, deleteContact, updateContact, initMockDataService } from "@/lib/mock-data-service"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { toast } from "@/components/ui/use-toast"
 
 export default function ContactsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [contacts, setContacts] = useState([])
   const [selectedContact, setSelectedContact] = useState<any>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   useEffect(() => {
     // Initialize mock data service
@@ -31,21 +38,24 @@ export default function ContactsPage() {
     setContacts(getContacts())
   }, [])
 
-  const handleStatusChange = (id: number, status: string) => {
-    updateContact(id, { status })
-    setContacts(getContacts()) // Refresh the list
-  }
-
   const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this contact submission?")) {
+    if (confirm("Are you sure you want to delete this contact?")) {
       deleteContact(id)
       setContacts(getContacts()) // Refresh the list
+      toast({
+        title: "Contact deleted",
+        description: "The contact has been deleted successfully.",
+      })
     }
   }
 
-  const viewContactDetails = (contact: any) => {
-    setSelectedContact(contact)
-    setIsDialogOpen(true)
+  const markAsReplied = (id: number) => {
+    updateContact(id, { status: "Replied" })
+    setContacts(getContacts()) // Refresh the list
+    toast({
+      title: "Status updated",
+      description: "The contact has been marked as replied.",
+    })
   }
 
   const filteredContacts = contacts.filter(
@@ -59,11 +69,7 @@ export default function ContactsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Contact Submissions</h1>
-        <Button variant="outline">
-          <Download className="mr-2 h-4 w-4" />
-          Export CSV
-        </Button>
+        <h1 className="text-3xl font-bold tracking-tight">Contact Messages</h1>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
@@ -87,10 +93,9 @@ export default function ContactsPage() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setSearchTerm("")}>All Contacts</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setSearchTerm("")}>All Messages</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setSearchTerm("new")}>New</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setSearchTerm("replied")}>Replied</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSearchTerm("archived")}>Archived</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -114,46 +119,71 @@ export default function ContactsPage() {
                 <TableRow key={contact.id}>
                   <TableCell className="font-medium">{contact.name}</TableCell>
                   <TableCell>{contact.email}</TableCell>
-                  <TableCell>{contact.subject}</TableCell>
+                  <TableCell>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="link" className="p-0 h-auto" onClick={() => setSelectedContact(contact)}>
+                          {contact.subject}
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[600px]">
+                        <DialogHeader>
+                          <DialogTitle>{selectedContact?.subject}</DialogTitle>
+                          <DialogDescription>
+                            From: {selectedContact?.name} ({selectedContact?.email})
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="py-4 border-y my-4">
+                          <p>{selectedContact?.message}</p>
+                        </div>
+                        <div className="flex justify-between">
+                          <Button
+                            variant="outline"
+                            onClick={() => {
+                              window.location.href = `mailto:${selectedContact?.email}?subject=Re: ${selectedContact?.subject}`
+                            }}
+                          >
+                            <Mail className="mr-2 h-4 w-4" />
+                            Reply via Email
+                          </Button>
+                          {selectedContact?.status === "New" && (
+                            <Button onClick={() => markAsReplied(selectedContact.id)}>
+                              <Check className="mr-2 h-4 w-4" />
+                              Mark as Replied
+                            </Button>
+                          )}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </TableCell>
                   <TableCell>{contact.date}</TableCell>
                   <TableCell>
-                    <Badge
-                      variant={
-                        contact.status === "New" ? "default" : contact.status === "Replied" ? "secondary" : "outline"
-                      }
-                    >
-                      {contact.status}
-                    </Badge>
+                    <Badge variant={contact.status === "New" ? "default" : "outline"}>{contact.status}</Badge>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center justify-end gap-2">
-                      <Button variant="ghost" size="icon" onClick={() => viewContactDetails(contact)}>
-                        <Eye className="h-4 w-4" />
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => {
+                          window.location.href = `mailto:${contact.email}?subject=Re: ${contact.subject}`
+                        }}
+                      >
+                        <Mail className="h-4 w-4" />
                       </Button>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => viewContactDetails(contact)}>View Details</DropdownMenuItem>
-                          <DropdownMenuItem className="flex items-center">
-                            <Mail className="mr-2 h-4 w-4" />
-                            Reply
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => handleStatusChange(contact.id, "Replied")}>
-                            Mark as Replied
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => handleStatusChange(contact.id, "Archived")}>
-                            Archive
-                          </DropdownMenuItem>
-                          <DropdownMenuItem className="text-red-600" onClick={() => handleDelete(contact.id)}>
-                            <Trash className="mr-2 h-4 w-4" />
-                            Delete
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                      {contact.status === "New" && (
+                        <Button variant="ghost" size="icon" onClick={() => markAsReplied(contact.id)}>
+                          <Check className="h-4 w-4" />
+                        </Button>
+                      )}
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-red-500"
+                        onClick={() => handleDelete(contact.id)}
+                      >
+                        <Trash className="h-4 w-4" />
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -184,63 +214,6 @@ export default function ContactsPage() {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-
-      {/* Contact Details Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Contact Details</DialogTitle>
-            <DialogDescription>Contact submission information</DialogDescription>
-          </DialogHeader>
-          {selectedContact && (
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Name</h3>
-                <p>{selectedContact.name}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Email</h3>
-                <p>{selectedContact.email}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Subject</h3>
-                <p>{selectedContact.subject}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Message</h3>
-                <p className="whitespace-pre-wrap">{selectedContact.message}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Date</h3>
-                <p>{selectedContact.date}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Status</h3>
-                <Badge
-                  variant={
-                    selectedContact.status === "New"
-                      ? "default"
-                      : selectedContact.status === "Replied"
-                        ? "secondary"
-                        : "outline"
-                  }
-                >
-                  {selectedContact.status}
-                </Badge>
-              </div>
-              <div className="flex justify-end gap-2">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  Close
-                </Button>
-                <Button className="flex items-center">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Reply
-                </Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   )
 }

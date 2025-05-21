@@ -1,90 +1,64 @@
-import { NextResponse } from 'next/server'
-import { SignJWT, jwtVerify } from 'jose'
-import { cookies } from 'next/headers'
-import { getUserByEmail } from '@/lib/database-service'
-import bcryptjs from 'bcryptjs'
+import { type NextRequest, NextResponse } from "next/server"
+import { login, verifyToken } from "@/lib/database-service"
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'your-secret-key')
-
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { action, email, password } = await request.json()
+    const body = await request.json()
+    const { email, password } = body
 
-    switch (action) {
-      case 'login': {
-        const user = await getUserByEmail(email)
-        if (!user) {
-          return NextResponse.json({ error: 'User not found' }, { status: 404 })
-        }
+    if (!email || !password) {
+      return NextResponse.json(
+        { success: false, message: "Email and password are required" },
+        { status: 400 }
+      )
+    }
 
-        const isPasswordValid = await bcryptjs.compare(password, user.password)
-        if (!isPasswordValid) {
-          return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
-        }
+    const result = await login(email, password)
 
-        // Generate JWT token
-        const token = await new SignJWT({ 
-          sub: user._id?.toString(),
-          email: user.email, 
-          role: user.role 
-        })
-          .setProtectedHeader({ alg: 'HS256' })
-          .setIssuedAt()
-          .setExpirationTime('24h')
-          .sign(JWT_SECRET)
-
-        // Create response with token in cookie
-        const response = NextResponse.json({ success: true })
-        response.cookies.set('token', token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
-          maxAge: 60 * 60 * 24 // 24 hours
-        })
-
-        return response
-      }
-
-      case 'logout': {
-        const response = NextResponse.json({ success: true })
-        response.cookies.delete('token')
-        return response
-      }
-
-      default:
-        return NextResponse.json({ error: 'Invalid action' }, { status: 400 })
+    if (result.success) {
+      return NextResponse.json({ success: true, token: result.token, user: result.user })
+    } else {
+      return NextResponse.json(
+        { success: false, message: "Invalid email or password" },
+        { status: 401 }
+      )
     }
   } catch (error) {
-    console.error('Auth error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error("Login error:", error)
+    return NextResponse.json(
+      { success: false, message: "An error occurred during login" },
+      { status: 500 }
+    )
   }
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const token = request.headers.get('cookie')?.split(';')
-      .find(c => c.trim().startsWith('token='))
-      ?.split('=')[1]
+    const authHeader = request.headers.get("authorization")
 
-    if (!token) {
-      return NextResponse.json({ authenticated: false })
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return NextResponse.json(
+        { authenticated: false, message: "No token provided" },
+        { status: 401 }
+      )
     }
 
-    try {
-      const { payload } = await jwtVerify(token, JWT_SECRET)
-      return NextResponse.json({ 
-        authenticated: true,
-        user: {
-          email: payload.email,
-          role: payload.role
-        }
-      })
-    } catch {
-      return NextResponse.json({ authenticated: false })
+    const token = authHeader.split(" ")[1]
+    const result = await verifyToken(token)
+
+    if (result.authenticated) {
+      return NextResponse.json({ authenticated: true, user: result.user })
+    } else {
+      return NextResponse.json(
+        { authenticated: false, message: "Invalid or expired token" },
+        { status: 401 }
+      )
     }
   } catch (error) {
-    console.error('Auth verification error:', error)
-    return NextResponse.json({ authenticated: false })
+    console.error("Token verification error:", error)
+    return NextResponse.json(
+      { authenticated: false, message: "Error verifying token" },
+      { status: 401 }
+    )
   }
 }
-

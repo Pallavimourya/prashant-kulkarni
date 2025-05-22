@@ -1,164 +1,256 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
-import { Badge } from "@/components/ui/badge"
-import { Plus, Search, Filter, Trash, Edit } from "lucide-react"
-import { getEvents, deleteEvent, initMockDataService } from "@/lib/mock-data-service"
-import { useRouter } from "next/navigation"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner"
+import { adminService } from "@/lib/admin-service"
+import { ExternalLink, Edit, Trash2 } from "lucide-react"
+
+interface Event {
+  id: number
+  title: string
+  date: string
+  location: string
+  description: string
+  status: string
+  attendees: number
+  videoUrl?: string
+}
 
 export default function EventsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [events, setEvents] = useState([])
-  const router = useRouter()
+  const [events, setEvents] = useState<Event[]>([])
+  const [editingEvent, setEditingEvent] = useState<Event | null>(null)
+  const [isAddingEvent, setIsAddingEvent] = useState(false)
+  const [newEvent, setNewEvent] = useState<Omit<Event, "id">>({
+    title: "",
+    date: "",
+    location: "",
+    description: "",
+    status: "Published",
+    attendees: 0,
+    videoUrl: "",
+  })
 
   useEffect(() => {
-    // Initialize mock data service
-    initMockDataService()
-    // Load events from the mock service
-    setEvents(getEvents())
+    loadEvents()
   }, [])
 
-  const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this event?")) {
-      deleteEvent(id)
-      setEvents(getEvents()) // Refresh the list
+  const loadEvents = () => {
+    try {
+      const events = adminService.getEvents()
+      setEvents(events)
+    } catch (error) {
+      toast.error("Failed to load events")
     }
   }
 
-  const filteredEvents = events.filter(
-    (event: any) =>
-      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.status.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+  const handleEdit = (event: Event) => {
+    setEditingEvent({ ...event })
+  }
+
+  const handleSave = () => {
+    if (!editingEvent) return
+
+    try {
+      adminService.updateEvent(editingEvent)
+      loadEvents()
+      setEditingEvent(null)
+      toast.success("Event updated successfully")
+    } catch (error) {
+      toast.error("Failed to update event")
+    }
+  }
+
+  const handleDelete = (id: number) => {
+    if (!confirm("Are you sure you want to delete this event?")) return
+
+    try {
+      adminService.deleteEvent(id)
+      loadEvents()
+      toast.success("Event deleted successfully")
+    } catch (error) {
+      toast.error("Failed to delete event")
+    }
+  }
+
+  const handleAddEvent = () => {
+    if (!newEvent.title || !newEvent.date || !newEvent.location) {
+      toast.error("Please fill in all required fields")
+      return
+    }
+
+    try {
+      adminService.addEvent(newEvent)
+      loadEvents()
+      setIsAddingEvent(false)
+      setNewEvent({
+        title: "",
+        date: "",
+        location: "",
+        description: "",
+        status: "Published",
+        attendees: 0,
+        videoUrl: "",
+      })
+      toast.success("Event added successfully")
+    } catch (error) {
+      toast.error("Failed to add event")
+    }
+  }
+
+  const handleVideoClick = (url: string) => {
+    if (!url) return
+    const videoUrl = url.startsWith('http') ? url : `https://${url}`
+    window.open(videoUrl, '_blank', 'noopener,noreferrer')
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Events</h1>
-        <Link href="/admin/events/new">
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            New Event
-          </Button>
-        </Link>
+    <div className="space-y-6 p-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">Events</h1>
+        <Button onClick={() => setIsAddingEvent(true)}>Add New Event</Button>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-        <div className="relative w-full sm:w-auto">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search events..."
-            className="pl-8 w-full sm:w-[300px]"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+      {isAddingEvent && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Add New Event</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <Input
+                value={newEvent.title}
+                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                placeholder="Event Title *"
+                required
+              />
+              <Input
+                type="date"
+                value={newEvent.date}
+                onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                required
+              />
+              <Input
+                value={newEvent.location}
+                onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })}
+                placeholder="Location *"
+                required
+              />
+              <Textarea
+                value={newEvent.description}
+                onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                placeholder="Description"
+              />
+              <Input
+                value={newEvent.videoUrl}
+                onChange={(e) => setNewEvent({ ...newEvent, videoUrl: e.target.value })}
+                placeholder="Video URL (YouTube)"
+              />
+              <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={() => setIsAddingEvent(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={handleAddEvent}>Add Event</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
-        <div className="flex gap-2 w-full sm:w-auto">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="flex gap-1">
-                <Filter className="h-4 w-4" />
-                Filter
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setSearchTerm("")}>All Events</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSearchTerm("upcoming")}>Upcoming</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSearchTerm("past")}>Past</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setSearchTerm("cancelled")}>Cancelled</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-
-      <div className="border rounded-md">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Location</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Attendees</TableHead>
-              <TableHead className="w-[100px]">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredEvents.length > 0 ? (
-              filteredEvents.map((event: any) => (
-                <TableRow key={event.id}>
-                  <TableCell className="font-medium">{event.title}</TableCell>
-                  <TableCell>{event.location}</TableCell>
-                  <TableCell>{event.date}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={
-                        event.status === "Upcoming" ? "default" : event.status === "Past" ? "outline" : "secondary"
-                      }
-                    >
-                      {event.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">{event.attendees.toLocaleString()}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center justify-end gap-2">
-                      <Button variant="ghost" size="icon" onClick={() => router.push(`/admin/events/edit/${event.id}`)}>
-                        <Edit className="h-4 w-4" />
-                      </Button>
+      <div className="grid gap-6">
+        {events.map((event) => (
+          <Card key={event.id} className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="flex justify-between items-center">
+                <span>{event.title}</span>
+                <div className="space-x-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => handleEdit(event)}
+                    className="flex items-center gap-1"
+                  >
+                    <Edit className="h-4 w-4" />
+                    Edit
+                  </Button>
+                  <Button 
+                    variant="destructive" 
+                    size="sm" 
+                    onClick={() => handleDelete(event.id)}
+                    className="flex items-center gap-1"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Delete
+                  </Button>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {editingEvent && editingEvent.id === event.id ? (
+                <div className="space-y-4">
+                  <Input
+                    value={editingEvent.title}
+                    onChange={(e) => setEditingEvent({ ...editingEvent, title: e.target.value })}
+                    placeholder="Event Title"
+                    required
+                  />
+                  <Input
+                    type="date"
+                    value={editingEvent.date}
+                    onChange={(e) => setEditingEvent({ ...editingEvent, date: e.target.value })}
+                    required
+                  />
+                  <Input
+                    value={editingEvent.location}
+                    onChange={(e) => setEditingEvent({ ...editingEvent, location: e.target.value })}
+                    placeholder="Location"
+                    required
+                  />
+                  <Textarea
+                    value={editingEvent.description}
+                    onChange={(e) => setEditingEvent({ ...editingEvent, description: e.target.value })}
+                    placeholder="Description"
+                  />
+                  <Input
+                    value={editingEvent.videoUrl}
+                    onChange={(e) => setEditingEvent({ ...editingEvent, videoUrl: e.target.value })}
+                    placeholder="Video URL (YouTube)"
+                  />
+                  <div className="flex justify-end space-x-2">
+                    <Button variant="outline" onClick={() => setEditingEvent(null)}>
+                      Cancel
+                    </Button>
+                    <Button onClick={handleSave}>Save Changes</Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
+                  <p><strong>Location:</strong> {event.location}</p>
+                  <p><strong>Description:</strong> {event.description}</p>
+                  <p><strong>Status:</strong> {event.status}</p>
+                  <p><strong>Attendees:</strong> {event.attendees}</p>
+                  {event.videoUrl && (
+                    <div className="mt-4">
                       <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-red-500"
-                        onClick={() => handleDelete(event.id)}
+                        variant="link"
+                        className="p-0 h-auto text-theme-primary hover:underline flex items-center"
+                        onClick={() => handleVideoClick(event.videoUrl!)}
                       >
-                        <Trash className="h-4 w-4" />
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Watch Video
                       </Button>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={6} className="text-center py-4 text-muted-foreground">
-                  No events found. {searchTerm && "Try a different search term."}
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
       </div>
-
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
     </div>
   )
 }

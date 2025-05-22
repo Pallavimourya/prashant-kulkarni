@@ -61,18 +61,18 @@ export default function AdminSidebar() {
                 const Icon = item.icon
                 const isActive = pathname === item.href
                 return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
                         isActive ? "bg-theme-primary text-white" : "text-gray-700 hover:bg-gray-100",
-                      )}
-                    >
+                    )}
+                  >
                       <Icon className="h-5 w-5" />
                       {item.label}
-                    </Link>
-                  </li>
+                  </Link>
+                </li>
                 )
               })}
             </ul>

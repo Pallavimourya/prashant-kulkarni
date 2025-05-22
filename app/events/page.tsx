@@ -6,6 +6,51 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function EventsPage() {
+  const youtubeVideos = [
+    {
+      id: "1",
+      title: "History of Parantha",
+      thumbnail: "https://img.youtube.com/vi/i6_mjzN-Q4E/maxresdefault.jpg",
+      url: "https://youtu.be/i6_mjzN-Q4E?si=D3v5-oZdnHMOifFa",
+      date: "May 15, 2023",
+    },
+    {
+      id: "2",
+      title: "History of Kadhi by Zuper Prashant",
+      thumbnail: "https://img.youtube.com/vi/mkOjV7D8PpI/maxresdefault.jpg",
+      url: "https://youtube.com/shorts/mkOjV7D8PpI?si=I-ZsYXbPOyaC2mjp",
+      date: "April 20, 2023",
+    },
+    {
+      id: "3",
+      title: "The Secret to Success: Franchise Operating System Benefits",
+      thumbnail: "https://img.youtube.com/vi/hsoS9xpSnc4/maxresdefault.jpg",
+      url: "https://youtu.be/hsoS9xpSnc4?si=-ovFwXMRz0Lr5ZsD",
+      date: "March 10, 2023",
+    },
+    {
+      id: "4",
+      title: "Unlocking Entrepreneurship Secrets",
+      thumbnail: "https://img.youtube.com/vi/CbMxUpd7XWM/maxresdefault.jpg",
+      url: "https://youtu.be/CbMxUpd7XWM?si=JfCXFw1Ix_mJLJEG",
+      date: "February 5, 2023",
+    },
+    {
+      id: "5",
+      title: "Zuper Prashant | Start Now Don't Wish",
+      thumbnail: "https://img.youtube.com/vi/Mz6keGGFOLU/maxresdefault.jpg",
+      url: "https://youtu.be/Mz6keGGFOLU?si=POMSK-rh-ZXjt1mk",
+      date: "January 20, 2023",
+    },
+    {
+      id: "6",
+      title: "Seize the Moment: Take the Risk, Unlock the Opportunity",
+      thumbnail: "https://img.youtube.com/vi/8bWP6xHsOlo/maxresdefault.jpg",
+      url: "https://youtu.be/8bWP6xHsOlo?si=yWnWIxpaD9lFGlEt",
+      date: "December 15, 2022",
+    },
+  ]
+
   return (
     <main className="pt-20">
       {/* Hero Section */}
@@ -30,7 +75,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Join Prashant at these upcoming speaking engagements and events.
             </p>
-          </div>
+      </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -39,7 +84,7 @@ export default function EventsPage() {
                 title: "AIBC Eurasia Dubai",
                 date: "March 14, 2023",
                 location: "Dubai, UAE",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/prashant.jpg",
                 description:
                   "Prashant will be speaking on food innovation and entrepreneurship at this premier business conference.",
                 link: "#",
@@ -49,7 +94,7 @@ export default function EventsPage() {
                 title: "Food Business Summit",
                 date: "April 22, 2023",
                 location: "Mumbai, India",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/prashant.jpg",
                 description: "A keynote on scaling food businesses and creating sustainable franchise models.",
                 link: "#",
               },
@@ -58,7 +103,7 @@ export default function EventsPage() {
                 title: "Entrepreneurship Conference",
                 date: "May 10, 2023",
                 location: "Bangalore, India",
-                image: "/placeholder.svg?height=300&width=500",
+                image: "/prashant.jpg",
                 description: "Panel discussion on transitioning from corporate careers to successful entrepreneurship.",
                 link: "#",
               },
@@ -72,7 +117,7 @@ export default function EventsPage() {
                   <div className="flex items-center text-muted-foreground mb-2">
                     <Calendar className="h-4 w-4 mr-2" />
                     <span className="text-sm">{event.date}</span>
-                  </div>
+                </div>
                   <div className="flex items-center text-muted-foreground mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span className="text-sm">{event.location}</span>
@@ -97,7 +142,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Watch recordings and highlights from Prashant's previous speaking engagements.
             </p>
-          </div>
+                </div>
 
           <Tabs defaultValue="videos" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
@@ -107,45 +152,46 @@ export default function EventsPage() {
 
             <TabsContent value="videos" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  "History of Paratha | Zuper Prashant",
-                  "History of Kadhi by Zuper Prashant",
-                  "The Secret to Success: Franchise Operating System Benefits",
-                  "Unlocking Entrepreneurship Secrets",
-                  "Zuper Prashant | Start Now Don't Wish",
-                  "Seize the Moment: Take the Risk, Unlock the Opportunity",
-                ].map((title, index) => (
-                  <div key={index} className="relative overflow-hidden rounded-lg shadow-md">
-                    <div className="relative h-48 w-full bg-gray-200">
-                      <Image src={`/placeholder.svg?height=300&width=500`} alt={title} fill className="object-cover" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-black bg-opacity-60 rounded-full p-3">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M8 5V19L19 12L8 5Z" fill="white" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-medium line-clamp-2">{title}</h3>
-                    </div>
-                  </div>
-                ))}
+                {youtubeVideos.map((video) => (
+                  <Card key={video.id} className="overflow-hidden">
+                    <Link href={video.url} target="_blank" rel="noopener noreferrer">
+                      <div className="relative aspect-video">
+                        <Image
+                          src={video.thumbnail || "/placeholder.svg"}
+                          alt={video.title}
+                          fill
+                          className="object-cover transition-transform hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
+                            <div className="w-0 h-0 border-t-8 border-t-transparent border-l-16 border-l-red-600 border-b-8 border-b-transparent ml-1"></div>
+                          </div>
+                </div>
               </div>
+                    </Link>
+                    <CardContent className="p-4">
+                      <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
+                      <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
+                      <Link
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline text-sm"
+                      >
+                        Watch on YouTube
+                      </Link>
+            </CardContent>
+          </Card>
+                ))}
+        </div>
 
               <div className="flex justify-center mt-8">
-                <Link href="#">
+                <a href="https://www.youtube.com/c/zuperprashant" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="group">
                     View All Videos
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </TabsContent>
 
@@ -174,8 +220,8 @@ export default function EventsPage() {
                                 View Details
                               </Button>
                             </Link>
-                          </CardContent>
-                        </Card>
+            </CardContent>
+          </Card>
                       ))}
                     </div>
                   </div>
@@ -223,12 +269,7 @@ export default function EventsPage() {
               </Link>
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/placeholder.svg?height=800&width=600"
-                alt="Prashant Kulkarni Speaking"
-                fill
-                className="object-cover"
-              />
+              <Image src="/prashant.jpg" alt="Prashant Kulkarni Speaking" fill className="object-cover" />
             </div>
           </div>
         </div>
@@ -243,7 +284,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Feedback from event organizers and attendees about Prashant's speaking engagements.
             </p>
-          </div>
+      </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -277,8 +318,8 @@ export default function EventsPage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
+                  </div>
+                </div>
       </section>
 
       {/* CTA Section */}
@@ -290,12 +331,12 @@ export default function EventsPage() {
               <p className="text-gray-300 max-w-md">
                 Contact us today to check availability and discuss your event requirements.
               </p>
-            </div>
+              </div>
             <Link href="/contact">
               <Button className="bg-white text-black hover:bg-gray-200">Book Now</Button>
             </Link>
           </div>
-        </div>
+    </div>
       </section>
     </main>
   )

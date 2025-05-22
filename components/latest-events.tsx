@@ -1,112 +1,61 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin, Users } from "lucide-react"
-import { getEvents } from "@/lib/mock-data-service"
-import { useEffect, useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
+import { adminService } from "@/lib/admin-service"
 
-interface Event {
-  id: number
-  title: string
-  location: string
-  date: string
-  status: string
-  attendees: number
-  description: string
+function formatDate(dateString: string): string {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  })
 }
 
-export function LatestEvents() {
-  const [events, setEvents] = useState<Event[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export default function LatestEvents() {
+  const events = adminService.getEvents().slice(0, 3)
 
-  useEffect(() => {
-    try {
-      const allEvents = getEvents()
-      const upcomingEvents = allEvents
-        .filter((event: Event) => event.status === "Upcoming")
-        .sort((a: Event, b: Event) => {
-          try {
-            return new Date(a.date).getTime() - new Date(b.date).getTime()
-          } catch (e) {
-            return 0
-          }
-        })
-        .slice(0, 3)
-      setEvents(upcomingEvents)
-    } catch (e) {
-      setError("Failed to load events")
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
-
-  // Loading state
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[1, 2, 3].map((i) => (
-          <Card key={i} className="overflow-hidden">
-            <CardHeader className="p-6">
-              <div className="h-6 w-3/4 bg-muted animate-pulse rounded" />
-            </CardHeader>
-            <CardContent className="p-6 pt-0">
-              <div className="space-y-3">
-                <div className="h-4 w-1/2 bg-muted animate-pulse rounded" />
-                <div className="h-4 w-2/3 bg-muted animate-pulse rounded" />
-                <div className="h-4 w-1/3 bg-muted animate-pulse rounded" />
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    )
+  const handleVideoClick = (url: string) => {
+    if (!url) return
+    const videoUrl = url.startsWith('http') ? url : `https://${url}`
+    window.open(videoUrl, '_blank', 'noopener,noreferrer')
   }
 
-  // Error state
-  if (error) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-destructive">{error}</p>
-      </div>
-    )
-  }
-
-  // Empty state
-  if (!events || events.length === 0) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-muted-foreground">No upcoming events</p>
-      </div>
-    )
-  }
-
-  // Success state
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {events.map((event) => (
-        <Card key={event.id} className="overflow-hidden">
-          <CardHeader className="p-6">
-            <CardTitle className="line-clamp-2">{event.title || "Untitled Event"}</CardTitle>
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="space-y-3">
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Calendar className="mr-2 h-4 w-4" />
-                {event.date || "Date not specified"}
+        <Card key={event.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="relative aspect-video">
+            <Image
+              src={event.videoUrl ? `https://img.youtube.com/vi/${event.videoUrl.split('/').pop()?.split('?')[0]}/maxresdefault.jpg` : "/placeholder.svg"}
+              alt={event.title}
+              fill
+              className="object-cover transition-transform hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
+                <div className="w-0 h-0 border-t-6 border-t-transparent border-l-12 border-l-red-600 border-b-6 border-b-transparent ml-1"></div>
               </div>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <MapPin className="mr-2 h-4 w-4" />
-                {event.location || "Location not specified"}
-              </div>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Users className="mr-2 h-4 w-4" />
-                {event.attendees || 0} attendees
-              </div>
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {event.description || "No description available"}
-              </p>
             </div>
+          </div>
+          <CardContent className="p-4">
+            <div className="text-sm text-muted-foreground mb-2">{formatDate(event.date)}</div>
+            <h3 className="font-semibold text-lg mb-2 line-clamp-2">{event.title}</h3>
+            <p className="text-muted-foreground mb-4 line-clamp-2">{event.description}</p>
+            {event.videoUrl && (
+              <Button
+                variant="link"
+                className="p-0 h-auto text-theme-primary hover:underline flex items-center"
+                onClick={() => handleVideoClick(event.videoUrl!)}
+              >
+                Watch Video
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )}
           </CardContent>
         </Card>
       ))}

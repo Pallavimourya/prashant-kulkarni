@@ -7,18 +7,14 @@ import { Button } from "@/components/ui/button"
 import VideoHero from "@/components/video-hero"
 import ThreePillars from "@/components/three-pillars"
 import ImpactCounter from "@/components/impact-counter"
-import { LatestEvents } from "@/components/latest-events"
-import { getEvents } from "@/lib/mock-data-service"
+import BlogCarousel from "@/components/blog-carousel"
+import LatestEvents from "@/components/latest-events"
 
 export default function Home() {
-  const events = getEvents()
-
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <VideoHero />
-
-
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white">
@@ -35,12 +31,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/prashant.jpg"
-                alt="Prashant Kulkarni"
-                fill
-                className="object-cover"
-              />
+              <Image src="/prashant.jpg" alt="Prashant Kulkarni" fill className="object-cover" />
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-4 text-theme-dark">Parallel Entrepreneur</h3>
@@ -110,17 +101,42 @@ export default function Home() {
       </section>
 
       {/* Three Pillars Section */}
-      <div className="mt-16">
+      <section id="three-pillars">
         <ThreePillars />
-      </div>
+      </section>
 
       {/* Impact Counter Section */}
-      <div className="mt-16">
-        <ImpactCounter />
-      </div>
+      <ImpactCounter />
 
-    
+      {/* Blog Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-theme-dark">
+              Latest Ideas & Insights
+            </h2>
+            <div className="w-20 h-1 bg-theme-accent mb-8"></div>
+            <p className="max-w-3xl text-lg text-theme-muted">
+              Explore Prashant's latest thoughts, insights, and ideas on entrepreneurship, innovation, and business
+              growth.
+            </p>
+          </div>
 
+          <BlogCarousel />
+
+          <div className="flex justify-center mt-12">
+            <Link href="/blogs">
+              <Button
+                variant="outline"
+                className="group border-theme-primary text-theme-primary hover:bg-theme-primary hover:text-white"
+              >
+                View All Articles
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Events Section */}
       <section className="py-20 bg-theme-light">

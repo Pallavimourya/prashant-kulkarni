@@ -64,6 +64,7 @@ export default function Header() {
               { name: "Gallery", href: "/gallery" },
               { name: "Press Kit", href: "/press-kit" },
               { name: "Events", href: "/events" },
+              { name: "Blogs", href: "/blogs" },
             ].map((item) => (
               <Link
                 key={item.name}
@@ -138,6 +139,7 @@ export default function Header() {
               { name: "Gallery", href: "/gallery" },
               { name: "Press Kit", href: "/press-kit" },
               { name: "Events", href: "/events" },
+              { name: "Blogs", href: "/blogs" },
               { name: "Ideas", href: "/ideas" },
               { name: "Contact", href: "/contact" },
             ].map((item) => (

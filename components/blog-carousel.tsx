@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
 const blogImages = {
-  "chatar-patar": "/Images/blogs/chatar-patar.jpg",
-  "food-innovation": "/Images/blogs/food-innovation.jpg",
-  "business-growth": "/Images/blogs/business-growth.jpg"
+  "chatar-patar": "/Images/blogs/chatarpatar.jpg",
+  "food-innovation": "/Images/blogs/infosys.jpg",
+  "business-growth": "/Images/blogs/panipuri.jpg"
 }
 
 export default function BlogCarousel() {

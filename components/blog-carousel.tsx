@@ -10,6 +10,12 @@ import { getAllBlogs } from "@/lib/blog-data"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
+const blogImages = {
+  "chatar-patar": "/Images/blogs/chatar-patar.jpg",
+  "food-innovation": "/Images/blogs/food-innovation.jpg",
+  "business-growth": "/Images/blogs/business-growth.jpg"
+}
+
 export default function BlogCarousel() {
   const blogs = getAllBlogs().slice(0, 3)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -49,7 +55,7 @@ export default function BlogCarousel() {
               <div className="grid md:grid-cols-2 gap-6 h-full">
                 <div className="relative h-[300px] md:h-auto w-full">
                   <Image
-                    src="/public/Images/blogs/chatar-patar.jpg"
+                    src={blogImages[blogs[currentIndex].slug as keyof typeof blogImages] || "/Images/blogs/default.jpg"}
                     alt={blogs[currentIndex].title}
                     fill
                     className="object-cover"
@@ -72,7 +78,7 @@ export default function BlogCarousel() {
                     </CardDescription>
                   </div>
                   <Link href={`/blogs/${blogs[currentIndex].slug}`} className="w-full">
-                    <Button className="w-full group bg-[#111439] text-white hover:bg-[#1e264e] transition-all">
+                    <Button className="w-full group bg-lime-600 text-white hover:bg-lime-700 transition-all">
                       Read Full Article
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -89,14 +95,14 @@ export default function BlogCarousel() {
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-[#111439]" />
+        <ChevronLeft className="h-6 w-6 text-lime-600" />
       </button>
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-[#111439]" />
+        <ChevronRight className="h-6 w-6 text-lime-600" />
       </button>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
@@ -110,7 +116,7 @@ export default function BlogCarousel() {
             className={cn(
               "w-3 h-3 rounded-full transition-all duration-300",
               currentIndex === index
-                ? "bg-[#111439] scale-125"
+                ? "bg-lime-600 scale-125"
                 : "bg-gray-300 hover:bg-gray-400"
             )}
             aria-label={`Go to slide ${index + 1}`}

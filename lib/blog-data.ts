@@ -62,7 +62,7 @@ export interface BlogPost {
       <p>Chatar Patar's story is not just about selling panipuri; it's about transforming an industry, setting new standards, and creating a brand that resonates with modern consumers while staying true to traditional flavors.</p>`,
       date: "June 20, 2023",
       category: "Success Stories",
-      featuredImage: "/chatarpathar.jpg",
+      featuredImage: "/public/Images/blogs/chatar-patar.jpg",
     },
     {
       id: "2",
@@ -70,7 +70,7 @@ export interface BlogPost {
       title: "Prashant Kulkarni: The Entrepreneurial Journey",
       excerpt: "From software engineer to successful entrepreneur, Prashant Kulkarni's journey is a story of passion, innovation, and determination. Learn how he transformed his vision into a thriving business.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/public/Images/blogs/infosys.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/Images/blogs/infosys.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">PRASHANT KULKARNI: THE ENTREPRENEURIAL JOURNEY</h2>
@@ -131,7 +131,7 @@ export interface BlogPost {
       <p>Prashant Kulkarni's journey is a testament to the power of passion, innovation, and perseverance. His story continues to inspire entrepreneurs and food enthusiasts alike, proving that with the right vision and execution, anything is possible.</p>`,
       date: "June 18, 2023",
       category: "Entrepreneurship",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/infosys.jpg",
     },
     {
       id: "3",
@@ -167,7 +167,7 @@ export interface BlogPost {
       <p>Prashant Kulkarni's journey from coding software to selling panipuri exemplifies the triumph of passion and perseverance. Through Chatar Patar, he has not only redefined the panipuri experience but also inspired others to embrace their entrepreneurial dreams. Prashant's story serves as a reminder that pursuing one's true calling can lead to extraordinary success and fulfillment.</p>`,
       date: "June 15, 2023",
       category: "Newsroom",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/panipuri.jpg",
     },
     {
       id: "4",
@@ -197,7 +197,7 @@ export interface BlogPost {
   <p>Prashant Kulkarni's transformation from an Infosys techie to the founder of Chatar Patar reflects the power of determination and a passion for healthy eating. Through his brand, he has not only introduced a new wave of flavorful and nutritious chaat options but also inspired others to pursue their dreams and make a positive impact. As Chatar Patar continues to thrive, it serves as a reminder that following one's passion and striving for innovation can lead to remarkable success in the food industry.</p>`,
       date: "June 15, 2023",
       category: "Newsroom",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/chatarpatar.jpg",
     },
     {
       id: "5",
@@ -240,7 +240,7 @@ export interface BlogPost {
   <p>Warm regards, Prashant Kulkarni</p>`,
       date: "June 13, 2023",
       category: "Entrepreneurship",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/Mentorship.png",
     },
     {
       id: "6",
@@ -249,7 +249,7 @@ export interface BlogPost {
       excerpt:
         "From its humble beginnings to becoming a culinary sensation, Chatar Patar has redefined street food experiences, tantalizing taste buds and spreading joy.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/public/Images/blogs/Mentorship.png" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/journey.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
   <h3>The Spark of Inspiration</h3>
   <p>Chatar Patar's journey began with a spark of inspiration—an idea to reinvent and elevate street food. It all started with a deep-rooted love for traditional Indian flavors and the desire to offer them in an innovative, hygienic, and accessible way. The vision was to create a brand that would revolutionize the street food culture.</p>
@@ -282,7 +282,7 @@ export interface BlogPost {
   <p>Warm regards, Prashant Kulkarni</p>`,
       date: "June 13, 2023",
       category: "Innovations",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/journey.jpg",
     },
     {
       id: "7",
@@ -330,7 +330,7 @@ export interface BlogPost {
   <p>Prashant Kulkarni</p>`,
       date: "June 13, 2023",
       category: "Entrepreneurship",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/events/event.jpg",
     },
     {
       id: "8",
@@ -366,7 +366,7 @@ export interface BlogPost {
   <p>The journey of entrepreneurship is a testament to the power of vision, determination, and innovation. Prashant Kulkarni's story exemplifies these qualities and serves as an inspiration for those who dare to dream and have the courage to pursue their entrepreneurial aspirations. As he continues to write new chapters in his entrepreneurial saga, his journey reminds us that with passion, perseverance, and a commitment to excellence, anything is possible.</p>`,
       date: "June 2, 2023",
       category: "Entrepreneurship",
-      featuredImage: "/prashant.jpg",
+      featuredImage: "/public/Images/blogs/entrepreneurship.jpg",
     },
   ]
   

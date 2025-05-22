@@ -1,106 +1,72 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
+import { useInView } from "react-intersection-observer"
 
-export default function ImpactCounter() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+interface CounterProps {
+  end: number
+  label: string
+  suffix?: string
+  duration?: number
+}
 
-  const [counters, setCounters] = useState({
-    businesses: 0,
-    entrepreneurs: 0,
-    countries: 0,
-    revenue: 0,
+function Counter({ end, label, suffix = "+", duration = 2000 }: CounterProps) {
+  const [count, setCount] = useState(0)
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
   })
 
-  const targets = {
-    businesses: 12,
-    entrepreneurs: 5000,
-    countries: 15,
-    revenue: 100,
-  }
+  const countingDone = useRef(false)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+    if (inView && !countingDone.current) {
+      let startTime: number | null = null
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp
+        const progress = Math.min((timestamp - startTime) / duration, 1)
+        setCount(Math.floor(progress * end))
+
+        if (progress < 1) {
+          window.requestAnimationFrame(step)
+        } else {
+          countingDone.current = true
         }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const duration = 2000 // 2 seconds
-    const frameDuration = 1000 / 60 // 60fps
-    const totalFrames = Math.round(duration / frameDuration)
-
-    let frame = 0
-
-    const timer = setInterval(() => {
-      frame++
-
-      const progress = frame / totalFrames
-      const easeOutQuad = 1 - (1 - progress) * (1 - progress)
-
-      setCounters({
-        businesses: Math.floor(easeOutQuad * targets.businesses),
-        entrepreneurs: Math.floor(easeOutQuad * targets.entrepreneurs),
-        countries: Math.floor(easeOutQuad * targets.countries),
-        revenue: Math.floor(easeOutQuad * targets.revenue),
-      })
-
-      if (frame === totalFrames) {
-        clearInterval(timer)
       }
-    }, frameDuration)
 
-    return () => clearInterval(timer)
-  }, [isVisible])
+      window.requestAnimationFrame(step)
+    }
+  }, [inView, end, duration])
 
   return (
-    <section ref={sectionRef} className="py-16 bg-theme-primary text-white">
+    <div ref={ref} className="text-center">
+      <div className="text-4xl md:text-5xl font-bold mb-2 text-white">
+        {count}
+        {suffix}
+      </div>
+      <div className="text-lg text-gray-300">{label}</div>
+    </div>
+  )
+}
+
+export default function ImpactCounter() {
+  return (
+    <section className="py-20 bg-theme-gradient text-white">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Impact By Numbers</h2>
+        <div className="flex flex-col items-center text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Impact & Reach</h2>
           <div className="w-20 h-1 bg-theme-accent mb-8"></div>
-          <p className="max-w-3xl text-lg text-white/80">
-            Prashant Kulkarni's entrepreneurial journey has created significant impact across multiple dimensions.
+          <p className="max-w-3xl text-lg text-gray-300">
+            The numbers that showcase Prashant Kulkarni's entrepreneurial journey and impact.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-4">
-          <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-theme-accent">{counters.businesses}+</div>
-            <p className="text-white/80">Businesses Built</p>
-          </div>
-
-          <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-theme-accent">{counters.entrepreneurs}+</div>
-            <p className="text-white/80">Entrepreneurs Mentored</p>
-          </div>
-
-          <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-theme-accent">{counters.countries}+</div>
-            <p className="text-white/80">Countries Reached</p>
-          </div>
-
-          <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-theme-accent">${counters.revenue}M+</div>
-            <p className="text-white/80">Revenue Generated</p>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <Counter end={15} label="Years of Experience" />
+          <Counter end={10} label="Countries" />
+          <Counter end={25} label="Businesses" />
+          <Counter end={50} label="Food Brands" />
+          <Counter end={500} label="Outlets" />
         </div>
       </div>
     </section>

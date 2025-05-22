@@ -96,20 +96,6 @@ export default function Header() {
                 Contact
               </Button>
             </Link>
-            <Link href="/admin/login">
-              <Button
-                variant="ghost"
-                className={cn(
-                  "font-semibold flex items-center gap-2",
-                  isHomePage && !isScrolled
-                    ? "text-white hover:bg-white/10"
-                    : "text-theme-dark hover:bg-gray-100"
-                )}
-              >
-                <LogIn className="w-4 h-4" />
-                Admin Portal
-              </Button>
-            </Link>
           </div>
 
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">

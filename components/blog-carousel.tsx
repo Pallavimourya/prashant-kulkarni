@@ -49,7 +49,7 @@ export default function BlogCarousel() {
               <div className="grid md:grid-cols-2 gap-6 h-full">
                 <div className="relative h-[300px] md:h-auto w-full">
                   <Image
-                    src={blogs[currentIndex].featuredImage || "/placeholder.svg"}
+                    src="/images/blogs/chatar-patar.jpg"
                     alt={blogs[currentIndex].title}
                     fill
                     className="object-cover"

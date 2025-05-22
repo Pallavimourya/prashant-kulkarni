@@ -16,7 +16,7 @@ export interface BlogPost {
       title: "Chatar Patar: A Success Story of Innovation and Passion",
       excerpt: "From humble beginnings to becoming a household name, Chatar Patar's journey is a testament to innovation, quality, and customer satisfaction. Discover how this street food brand revolutionized the panipuri industry.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/chatar-patar.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">CHATAR PATAR: A SUCCESS STORY OF INNOVATION AND PASSION</h2>
@@ -70,7 +70,7 @@ export interface BlogPost {
       title: "Prashant Kulkarni: The Entrepreneurial Journey",
       excerpt: "From software engineer to successful entrepreneur, Prashant Kulkarni's journey is a story of passion, innovation, and determination. Learn how he transformed his vision into a thriving business.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/infosys.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">PRASHANT KULKARNI: THE ENTREPRENEURIAL JOURNEY</h2>
@@ -139,7 +139,7 @@ export interface BlogPost {
       title: "From Coding Software to Selling Panipuri",
       excerpt: "In a remarkable twist of fate, Prashant Kulkarni's journey took him from coding software to selling one of India's most beloved street foods, panipuri. His inspiring story is a testament to the power of following one's passion, taking risks, and embracing entrepreneurial opportunities.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/panipuri.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">FROM CODING SOFTWARE TO SELLING PANIPURI: PRASHANT KULKARNI'S INSPIRING "CHATAR PATAR" STORY</h2>
@@ -176,7 +176,7 @@ export interface BlogPost {
       excerpt:
         "In a bold move that showcases the spirit of entrepreneurship and a passion for healthy eating, an Infosys techie, Prashant Kulkarni, made the decision to leave his corporate job.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/chatarpatar.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
   <h3>The Spark of Inspiration</h3>
@@ -206,7 +206,7 @@ export interface BlogPost {
       excerpt:
         "Mentorship is a powerful relationship that has the potential to shape careers, nurture personal growth, and pave the way for success.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/Mentorship.png" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
   <h3>Guidance and Wisdom</h3>
@@ -249,7 +249,7 @@ export interface BlogPost {
       excerpt:
         "From its humble beginnings to becoming a culinary sensation, Chatar Patar has redefined street food experiences, tantalizing taste buds and spreading joy.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/Mentorship.png" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
   <h3>The Spark of Inspiration</h3>
   <p>Chatar Patar's journey began with a spark of inspiration—an idea to reinvent and elevate street food. It all started with a deep-rooted love for traditional Indian flavors and the desire to offer them in an innovative, hygienic, and accessible way. The vision was to create a brand that would revolutionize the street food culture.</p>
@@ -291,7 +291,7 @@ export interface BlogPost {
       excerpt:
         "Today, I want to share with you some valuable insights and strategies on one of the most crucial skills for personal and professional growth—time management.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/events/event.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
   <h3>Prioritizing Tasks</h3>
@@ -339,7 +339,7 @@ export interface BlogPost {
       excerpt:
         "Join us as we dive into the inspiring journey of Prashant Kulkarni, a visionary entrepreneur who has transformed the culinary landscape.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/prashant.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/public/Images/blogs/entrepreneurship.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
   <h3>The Beginning</h3>

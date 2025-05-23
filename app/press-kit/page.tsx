@@ -1,307 +1,272 @@
-import type React from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Download, FileText, Video, Newspaper } from "lucide-react"
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Download, FileText, Image, Video, Award, Briefcase, Users, Globe, Newspaper, FileDown, ArrowRight } from "lucide-react"
+
+const handleDownload = () => {
+  const link = document.createElement('a');
+  link.href = '/pdf/Prashant-Kulkarni-Presskit.pdf';
+  link.setAttribute('download', 'Prashant-Kulkarni-Presskit.pdf');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+const pressResources = [
+  {
+    title: "Official Bio",
+    description: "Professional biography and background information",
+    icon: <FileText className="h-6 w-6" />
+  },
+  {
+    title: "High-Resolution Photos",
+    description: "Professional headshots and event photos",
+    icon: <Image className="h-6 w-6" />
+  },
+  {
+    title: "Media Kit",
+    description: "Complete press kit with logos and brand assets",
+    icon: <FileDown className="h-6 w-6" />
+  },
+  {
+    title: "Video Clips",
+    description: "Speaking engagements and interviews",
+    icon: <Video className="h-6 w-6" />
+  }
+]
+
+const achievements = [
+  {
+    title: "Entrepreneurial Success",
+    description: "Founded and scaled multiple successful businesses",
+    icon: <Briefcase className="h-6 w-6" />
+  },
+  {
+    title: "Industry Recognition",
+    description: "Awarded for innovation and business excellence",
+    icon: <Award className="h-6 w-6" />
+  },
+  {
+    title: "Global Impact",
+    description: "Business presence across multiple countries",
+    icon: <Globe className="h-6 w-6" />
+  },
+  {
+    title: "Community Building",
+    description: "Mentored thousands of entrepreneurs",
+    icon: <Users className="h-6 w-6" />
+  }
+]
+
+const pressCoverage = [
+  {
+    title: "The Economic Times",
+    date: "March 2024",
+    description: "How Prashant Kulkarni is Revolutionizing Food Entrepreneurship in India",
+    link: "#"
+  },
+  {
+    title: "Business Today",
+    date: "February 2024",
+    description: "From Startup to Success: The Journey of a Serial Entrepreneur",
+    link: "#"
+  },
+  {
+    title: "Entrepreneur India",
+    date: "January 2024",
+    description: "Innovation in Food Business: A Conversation with Prashant Kulkarni",
+    link: "#"
+  }
+]
 
 export default function PressKitPage() {
   return (
-    <main className="pt-20">
+    <main className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100">
       {/* Hero Section */}
-      <section className="bg-black text-white py-20">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Press Kit</h1>
-            <div className="w-20 h-1 bg-white mb-8"></div>
-            <p className="max-w-3xl text-lg text-gray-300">
-              Official media resources for Prashant Kulkarni - Parallel Entrepreneur, Innovator, Speaker, and Thinker.
+      <section className="relative py-20 bg-gradient-to-br from-lime-600 via-lime-500 to-lime-600 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Press Kit
+            </h1>
+            <p className="text-xl md:text-2xl text-lime-100 mb-8 font-light">
+              Media resources and information for journalists and content creators
             </p>
+            {/* <a 
+              href="/pdf/Prashant-Kulkarni-Presskit.pdf"
+              className="inline-flex items-center justify-center bg-white text-lime-600 hover:bg-lime-50 px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ textDecoration: 'none' }}
+            >
+              Download Full Press Kit
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a> */}
           </div>
         </div>
       </section>
 
-      {/* Press Kit Overview */}
-      <section className="py-20">
-        <div className="container px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Media Resources</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Welcome to the official press kit for Prashant Kulkarni. Here you'll find downloadable assets, biography
-                information, and media mentions to support your coverage.
-              </p>
-              <p className="text-lg text-muted-foreground mb-6">
-                These resources are available for journalists, event organizers, and media professionals. For additional
-                materials or specific requests, please contact our media relations team.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-black hover:bg-gray-800 text-white">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Full Press Kit
-                </Button>
-                <Link href="/contact">
-                  <Button variant="outline">Media Inquiry</Button>
-                </Link>
-              </div>
-            </div>
-            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/placeholder.svg?height=800&width=600"
-                alt="Prashant Kulkarni Press Photo"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Quick Bio Section */}
+      <section className="py-20 -mt-16">
+        <div className="container mx-auto px-4">
+          <Card className="bg-white/80 backdrop-blur-lg shadow-2xl border-0">
+            <CardContent className="p-12">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-lime-600 to-lime-500 bg-clip-text text-transparent">
+                  BIOGRAPHY
+                </h2>
+                <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+                  Prashant Kulkarni: A Parallel Entrepreneur Revolutionizing the Food Industry
+                </h3>
+                
+                <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+                  <p>
+                    Prashant Kulkarni is a visionary entrepreneur with a dynamic portfolio of ventures that span the food industry and beyond. As a Parallel Entrepreneur, he excels in managing multiple businesses simultaneously, leveraging his expertise, innovation, and strategic thinking to drive success.
+                  </p>
 
-      {/* Downloadable Assets */}
-      <section className="py-20 bg-gray-50">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Downloadable Assets</h2>
-            <div className="w-20 h-1 bg-black mb-8"></div>
-            <p className="max-w-3xl text-lg text-muted-foreground">
-              High-quality assets for media use, including photos, logos, and brand materials.
-            </p>
-          </div>
-
-          <Tabs defaultValue="photos" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="photos">Photos</TabsTrigger>
-              <TabsTrigger value="logos">Logos</TabsTrigger>
-              <TabsTrigger value="bios">Biographies</TabsTrigger>
-              <TabsTrigger value="videos">Videos</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="photos" className="mt-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <AssetCard
-                    key={item}
-                    title={`Official Headshot ${item}`}
-                    type="JPG, PNG | High Resolution"
-                    image={`/placeholder.svg?height=400&width=300`}
-                  />
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="logos" className="mt-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {["Tasty Alphabets", "Food Franchise India", "Zuper World", "Chatar Patar"].map((brand) => (
-                  <AssetCard
-                    key={brand}
-                    title={`${brand} Logo`}
-                    type="PNG, SVG | Transparent Background"
-                    image={`/placeholder.svg?height=300&width=300`}
-                  />
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="bios" className="mt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <AssetCard
-                  title="Full Biography"
-                  type="PDF, DOCX | 1,200 words"
-                  image={`/placeholder.svg?height=300&width=400`}
-                  icon={<FileText className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="Short Biography"
-                  type="PDF, DOCX | 300 words"
-                  image={`/placeholder.svg?height=300&width=400`}
-                  icon={<FileText className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="Speaking Introduction"
-                  type="PDF, DOCX | 150 words"
-                  image={`/placeholder.svg?height=300&width=400`}
-                  icon={<FileText className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="Achievements & Awards"
-                  type="PDF, DOCX | Comprehensive List"
-                  image={`/placeholder.svg?height=300&width=400`}
-                  icon={<FileText className="h-10 w-10" />}
-                />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="videos" className="mt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <AssetCard
-                  title="Promo Video"
-                  type="MP4 | 1080p | 2 minutes"
-                  image={`/placeholder.svg?height=300&width=500`}
-                  icon={<Video className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="Speaking Highlights"
-                  type="MP4 | 1080p | 5 minutes"
-                  image={`/placeholder.svg?height=300&width=500`}
-                  icon={<Video className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="Interview Clips"
-                  type="MP4 | 1080p | Various Lengths"
-                  image={`/placeholder.svg?height=300&width=500`}
-                  icon={<Video className="h-10 w-10" />}
-                />
-                <AssetCard
-                  title="B-Roll Footage"
-                  type="MP4 | 1080p | 10 minutes"
-                  image={`/placeholder.svg?height=300&width=500`}
-                  icon={<Video className="h-10 w-10" />}
-                />
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      {/* Recent Media Coverage */}
-      <section className="py-20">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Recent Press</h2>
-            <div className="w-20 h-1 bg-black mb-8"></div>
-            <p className="max-w-3xl text-lg text-muted-foreground">
-              Latest media mentions, interviews, and press coverage featuring Prashant Kulkarni.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Chatar Patar: Standardizing Street Food Across India",
-                publication: "Food Business Magazine",
-                date: "June 15, 2023",
-                excerpt:
-                  "Chatar Patar, a renowned name in the culinary realm, has revolutionized the street food scene in India...",
-                link: "#",
-              },
-              {
-                title: "From Coding Software to Selling Panipuri",
-                publication: "Entrepreneur Weekly",
-                date: "June 15, 2023",
-                excerpt:
-                  "In a remarkable twist of fate, Prashant Kulkarni's journey took him from coding software to revolutionizing the street food industry...",
-                link: "#",
-              },
-              {
-                title: "Infosys Techie Leaves Company To Have A Healthy Chaat Brand",
-                publication: "Business Insider",
-                date: "June 15, 2023",
-                excerpt:
-                  "In a bold move that showcases the spirit of entrepreneurship and a passion for healthy food options...",
-                link: "#",
-              },
-              {
-                title: "The Journey of Entrepreneurship: Insights from Prashant Kulkarni",
-                publication: "Startup Journal",
-                date: "June 2, 2023",
-                excerpt:
-                  "Join us as we dive into the inspiring journey of Prashant Kulkarni, a visionary entrepreneur...",
-                link: "#",
-              },
-              {
-                title: "Trailblazing Success: Prashant Kulkarni's Leadership",
-                publication: "Leadership Today",
-                date: "May 28, 2023",
-                excerpt:
-                  "Exploring the leadership principles and business acumen that have made Prashant Kulkarni a standout entrepreneur...",
-                link: "#",
-              },
-              {
-                title: "Revolutionizing Food Education with Tasty Alphabets",
-                publication: "Education Innovation",
-                date: "May 15, 2023",
-                excerpt:
-                  "How Prashant Kulkarni's Tasty Alphabets is changing the landscape of food education and culinary learning...",
-                link: "#",
-              },
-            ].map((article, index) => (
-              <Card key={index} className="overflow-hidden border-none shadow-md">
-                <CardContent className="p-6">
-                  <div className="flex items-center text-sm text-muted-foreground mb-2">
-                    <Newspaper className="h-4 w-4 mr-2" />
-                    <span>{article.publication}</span>
-                    <span className="mx-2">•</span>
-                    <span>{article.date}</span>
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">Director of Tasty Alphabets:</h4>
+                    <p>
+                      In his role as the Director of Tasty Alphabets, Prashant has revolutionized the field of food, foodtech, food education, packaging standards, food standardization. Tasty Alphabets is an innovative platform that combines culinary education with language learning, providing a unique and engaging experience for children. Prashant's visionary leadership has transformed the way young minds explore and understand the world of food.
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{article.title}</h3>
-                  <p className="text-muted-foreground mb-4">{article.excerpt}</p>
-                  <Link href={article.link} className="text-sm font-medium text-black hover:underline">
-                    Read Full Article
-                  </Link>
+
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">CEO of Food Franchise India and Food Business India:</h4>
+                    <p>
+                      Prashant serves as the CEO of Food Franchise India and Food Business India, two leading organizations dedicated to nurturing growth and innovation in the food franchise industry. Under his guidance, these platforms have become invaluable resources for aspiring entrepreneurs, offering comprehensive guidance, industry insights, and networking opportunities.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">Zuper World:</h4>
+                    <p>
+                      Prashant's passion for empowering entrepreneurs led him to create Zuper World, an exceptional platform designed to support and mentor individuals on their entrepreneurial journey. Through Zuper World, Prashant provides valuable resources, mentorship programs, and strategic guidance, empowering aspiring entrepreneurs to turn their dreams into successful businesses with the help of technology and other win-win business models.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">Thought Leader and Motivator:</h4>
+                    <p>
+                      Prashant is renowned as a prolific thinker, motivator, speaker, and innovator. His insights and expertise make him a highly sought-after speaker at prestigious conferences and forums. Prashant's ability to inspire and motivate audiences with his unique perspectives on entrepreneurship, innovation, and business growth is unparalleled.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">Innovation and Excellence:</h4>
+                    <p>
+                      Prashant Kulkarni's entrepreneurial journey is marked by a relentless pursuit of innovation and excellence. His ability to identify untapped market opportunities, think outside the box, and drive transformative change has set him apart as a true innovator in the industry. Prashant's ventures are known for pushing boundaries and redefining industry norms.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-xl mb-3 text-gray-900">Recognition and Impact:</h4>
+                    <p>
+                      Prashant's remarkable contributions have been widely recognized and celebrated. His exceptional leadership and entrepreneurial achievements have earned him numerous awards and accolades, cementing his status as an industry luminary. From the CNBC Masterpreneur award to the Super Startup Asia award, Prashant's impact continues to inspire others in the entrepreneurial ecosystem worldwide.
+                    </p>
+                  </div>
+
+                  <p>
+                    Prashant Kulkarni's dedication to driving innovation, empowering entrepreneurs, and transforming the food industry has established him as a prominent figure in the business world. His role as a Parallel Entrepreneur, Director of Tasty Alphabets, Founder & CEO of Food Franchise India, Food Business India, and Zuper World showcases his diverse skill set and unwavering commitment to making a positive impact. Prashant's entrepreneurial journey is characterised by his ability to motivate, inspire, and pave the way for aspiring entrepreneurs to unlock their full potential.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Press Resources Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-lime-600 to-lime-500 bg-clip-text text-transparent">
+              Press Resources
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Download high-quality media assets and resources for your coverage
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pressResources.map((resource, index) => (
+              <Card 
+                key={index} 
+                className="bg-white/80 backdrop-blur-lg shadow-lg hover:shadow-xl transition-all duration-300 border-0 group"
+              >
+                <CardContent className="p-8">
+                  <div className="text-lime-600 mb-6 group-hover:scale-110 transition-transform duration-300">
+                    {resource.icon}
+                  </div>
+                  <h3 className="font-semibold text-xl mb-3 text-gray-900">{resource.title}</h3>
+                  <p className="text-gray-600">{resource.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="flex justify-center mt-12">
-            <Button variant="outline" className="group">
-              View All Press Coverage
-              <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-            </Button>
+      {/* Press Coverage Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-lime-600 to-lime-500 bg-clip-text text-transparent">
+              Recent Press Coverage
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Latest features and interviews in leading publications
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pressCoverage.map((coverage, index) => (
+              <Card 
+                key={index} 
+                className="bg-white/80 backdrop-blur-lg shadow-lg hover:shadow-xl transition-all duration-300 border-0 group"
+              >
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 text-lime-600 mb-6">
+                    <Newspaper className="h-6 w-6" />
+                    <span className="font-medium">{coverage.date}</span>
+                  </div>
+                  <h3 className="font-semibold text-xl mb-4 text-gray-900">{coverage.title}</h3>
+                  <p className="text-gray-600 mb-6">{coverage.description}</p>
+                  <Button 
+                    variant="ghost" 
+                    className="text-lime-600 hover:text-lime-700 hover:bg-lime-50 rounded-full px-6"
+                  >
+                    Read Article
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-black text-white">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-8 md:mb-0 text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Media Inquiries</h2>
-              <p className="text-gray-300 max-w-md">
-                For press inquiries, interview requests, or additional information, please contact our media relations
-                team.
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <Card className="bg-gradient-to-br from-lime-600 to-lime-700 text-white shadow-2xl border-0 overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+            <CardContent className="p-16 text-center relative">
+              <h2 className="text-4xl font-bold mb-6">Media Inquiries</h2>
+              <p className="text-lime-100 text-lg mb-10 max-w-2xl mx-auto">
+                For interview requests, speaking engagements, or media inquiries, please contact our press team
               </p>
-            </div>
-            <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-gray-200">Contact Press Team</Button>
-            </Link>
-          </div>
+              <Button 
+                size="lg"
+                variant="secondary" 
+                className="bg-white text-lime-600 hover:bg-lime-50 px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Contact Press Team
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </main>
-  )
-}
-
-function AssetCard({
-  title,
-  type,
-  image,
-  icon,
-}: {
-  title: string
-  type: string
-  image: string
-  icon?: React.ReactNode
-}) {
-  return (
-    <Card className="overflow-hidden border-none shadow-md">
-      <div className="relative h-48 w-full bg-gray-100 flex items-center justify-center">
-        {icon ? (
-          <div className="text-gray-400">{icon}</div>
-        ) : (
-          <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
-        )}
-      </div>
-      <CardContent className="p-6">
-        <h3 className="text-lg font-bold mb-1">{title}</h3>
-        <p className="text-sm text-muted-foreground mb-4">{type}</p>
-        <Button variant="outline" size="sm" className="w-full">
-          <Download className="mr-2 h-4 w-4" />
-          Download
-        </Button>
-      </CardContent>
-    </Card>
   )
 }

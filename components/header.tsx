@@ -32,6 +32,7 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Blogs", href: "/blogs" },
+    { name: "Press Kit", href: "/press-kit" },
     { name: "Mentorship", href: "/mentorship" },
     { name: "Contact", href: "/contact" },
   ]
@@ -40,6 +41,7 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Blogs", href: "/blogs" },
+    { name: "Press Kit", href: "/press-kit" },
     { name: "Mentorship", href: "/mentorship" },
     { name: "Contact", href: "/contact" },
   ]

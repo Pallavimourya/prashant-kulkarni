@@ -71,29 +71,29 @@ export default function BlogCarousel() {
                       <span>{blogs[currentIndex].date}</span>
                       <span>•</span>
                       <span>{blogs[currentIndex].category}</span>
-                    </div>
+              </div>
                     <CardTitle className="text-3xl font-semibold mb-4 line-clamp-2 text-gray-800">
                       {blogs[currentIndex].title}
                     </CardTitle>
                     <CardDescription className="text-base line-clamp-4 text-gray-600 mb-6">
                       {blogs[currentIndex].excerpt}
                     </CardDescription>
-                  </div>
+            </div>
                   <Link href={`/blogs/${blogs[currentIndex].slug}`} className="w-full">
                     <Button className="w-full group bg-lime-600 text-white hover:bg-lime-700 transition-all">
                       Read Full Article
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                </Button>
+              </Link>
                 </div>
               </div>
-            </Card>
+          </Card>
           </motion.div>
         </AnimatePresence>
       </div>
 
       <button
-        onClick={prevSlide}
+          onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
         aria-label="Previous slide"
       >
@@ -103,14 +103,14 @@ export default function BlogCarousel() {
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
         aria-label="Next slide"
-      >
+        >
         <ChevronRight className="h-6 w-6 text-lime-600" />
       </button>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
         {blogs.map((_, index) => (
-          <button
-            key={index}
+            <button
+              key={index}
             onClick={() => {
               setCurrentIndex(index)
               setIsAutoPlaying(false)
@@ -122,8 +122,8 @@ export default function BlogCarousel() {
                 : "bg-gray-300 hover:bg-gray-400"
             )}
             aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+            />
+          ))}
       </div>
     </div>
   )

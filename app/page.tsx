@@ -159,7 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter Section
       <section className="py-16 bg-theme-dark text-white">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center text-center">
@@ -180,7 +180,7 @@ export default function Home() {
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Scroll Down Indicator */}
       <div className="fixed bottom-8 right-8 z-50 hidden md:block">

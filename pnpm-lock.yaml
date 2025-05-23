@@ -131,6 +131,9 @@ importers:
       gcp-metadata:
         specifier: ^6.1.1
         version: 6.1.1
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
       immer:
         specifier: latest
         version: 10.1.1
@@ -1896,6 +1899,9 @@ packages:
   google-logging-utils@0.0.2:
     resolution: {integrity: sha512-NEgUnEcBiP5HrPzufUkBzJOD/Sxsco3rLNo1F1TNf7ieU8ryUzBhqba8r756CjLX7rn3fHl6iLEwPYuqpoKgQQ==}
     engines: {node: '>=14'}
+
+  gsap@3.13.0:
+    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
 
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
@@ -4676,6 +4682,8 @@ snapshots:
       path-scurry: 1.11.1
 
   google-logging-utils@0.0.2: {}
+
+  gsap@3.13.0: {}
 
   hasown@2.0.2:
     dependencies:

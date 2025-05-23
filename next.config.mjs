@@ -9,6 +9,24 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Add headers for PDF files
+  async headers() {
+    return [
+      {
+        source: '/pdf/:path*',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/pdf',
+          },
+          {
+            key: 'Content-Disposition',
+            value: 'attachment; filename="Prashant-Kulkarni-Presskit.pdf"',
+          },
+        ],
+      },
+    ]
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Don't resolve 'fs' module on the client to prevent this error

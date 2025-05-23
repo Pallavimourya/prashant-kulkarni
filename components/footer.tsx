@@ -124,7 +124,6 @@ export default function Footer() {
     </footer>
   )
 }
-
 function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
     <Link
@@ -136,3 +135,4 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
     </Link>
   )
 }
+

@@ -64,7 +64,7 @@ const contactInfo = [
   },
   {
     title: "Location",
-    value: "Pune, Maharashtra, India",
+    value: "Indore, Madhya Pradesh, India",
     icon: <MapPin className="h-6 w-6" />
   }
 ]
@@ -81,7 +81,7 @@ export default function ContactPage() {
             <p className="text-xl text-lime-100 mb-8">
               Have a question or want to work together? I'm here to help you achieve your goals.
             </p>
-          </div>
+      </div>
         </div>
       </section>
 
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   <div className="flex items-center gap-4">
                     <div className="p-3 rounded-full bg-lime-100 text-lime-600">
                       {info.icon}
-                    </div>
+        </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">{info.title}</h3>
                       {info.href ? (
@@ -114,7 +114,7 @@ export default function ContactPage() {
               </Card>
             ))}
           </div>
-        </div>
+      </div>
       </section>
 
       {/* Main Contact Section */}
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 <CardContent className="p-8">
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
+              <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                           Name
                         </label>
@@ -142,8 +142,8 @@ export default function ContactPage() {
                           placeholder="Your name"
                           className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
                         />
-                      </div>
-                      <div>
+              </div>
+              <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                           Email
                         </label>
@@ -154,8 +154,8 @@ export default function ContactPage() {
                           className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
                         />
                       </div>
-                    </div>
-                    <div>
+              </div>
+              <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                         Subject
                       </label>
@@ -164,8 +164,8 @@ export default function ContactPage() {
                         placeholder="What's this about?"
                         className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
                       />
-                    </div>
-                    <div>
+              </div>
+              <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                         Message
                       </label>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                   </form>
                 </CardContent>
               </Card>
-            </div>
+              </div>
 
             {/* Social Media & Additional Info */}
             <div className="space-y-8">
@@ -231,12 +231,12 @@ export default function ContactPage() {
                       <span>Sunday</span>
                       <span>Closed</span>
                     </p>
-                  </div>
+              </div>
                 </CardContent>
               </Card>
             </div>
           </div>
-        </div>
+    </div>
       </section>
     </main>
   )

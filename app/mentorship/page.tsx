@@ -94,7 +94,7 @@ export default function MentorshipPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-lime-600 to-lime-400">
               Food Business Excellence
-            </h1>
+        </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Transform your food business with expert training and mentorship from industry leaders
             </p>
@@ -122,7 +122,7 @@ export default function MentorshipPage() {
                 "Success is a journey, and mentorship is the compass that guides you towards your destination."
               </p>
               <p className="text-lime-600 font-semibold mt-2">- Prashant Kulkarni</p>
-            </div>
+          </div>
           </div>
         </div>
       </section>
@@ -146,11 +146,11 @@ export default function MentorshipPage() {
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Clock className="h-4 w-4" />
                       <span>{program.duration}</span>
-                    </div>
+            </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <MessageSquare className="h-4 w-4" />
                       <span>{program.sessions}</span>
-                    </div>
+              </div>
                     <div className="text-2xl font-bold text-lime-600">{program.price}</div>
                     <ul className="space-y-2">
                       {program.features.map((feature, i) => (
@@ -161,7 +161,7 @@ export default function MentorshipPage() {
                       ))}
                     </ul>
                     <Button className="w-full mt-4 bg-lime-600 hover:bg-lime-700 text-white">Enroll Now</Button>
-                  </div>
+            </div>
                 </CardContent>
               </Card>
             ))}
@@ -195,8 +195,8 @@ export default function MentorshipPage() {
                     <div>
                       <div className="font-semibold text-lg text-gray-800">{testimonial.name}</div>
                       <div className="text-sm text-lime-600 font-medium">{testimonial.role}</div>
-                    </div>
-                  </div>
+          </div>
+        </div>
                   <p className="text-muted-foreground leading-relaxed">{testimonial.content}</p>
                 </CardContent>
               </Card>

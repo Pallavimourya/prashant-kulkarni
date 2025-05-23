@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ArrowRight, Award, BookOpen, Briefcase, Lightbulb, Users } from "lucide-react"
 
 const timelineData = [
   {
@@ -121,73 +122,155 @@ const timelineData = [
   },
 ];
 
+const achievements = [
+  {
+    icon: <Award className="h-8 w-8" />,
+    title: "CNBC Masterpreneur",
+    description: "Recognized for exceptional entrepreneurial skills and business acumen.",
+    year: "2019"
+  },
+  {
+    icon: <Lightbulb className="h-8 w-8" />,
+    title: "Super Startup Asia",
+    description: "Honored for innovative business models and sustainable growth strategies.",
+    year: "2018"
+  },
+  {
+    icon: <Briefcase className="h-8 w-8" />,
+    title: "Food Innovator of the Year",
+    description: "Awarded for revolutionizing the street food industry with standardized processes.",
+    year: "2017"
+  },
+  {
+    icon: <Users className="h-8 w-8" />,
+    title: "Franchise Leadership Award",
+    description: "Recognized for outstanding contribution to the franchise ecosystem in India.",
+    year: "2016"
+  },
+  {
+    icon: <BookOpen className="h-8 w-8" />,
+    title: "Young Entrepreneur Award",
+    description: "Honored for exceptional business leadership and innovation at a young age.",
+    year: "2015"
+  }
+]
+
 export default function AboutPage() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="bg-theme-gradient text-white py-20">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">My Story</h1>
-            <div className="w-20 h-1 bg-theme-accent mb-8"></div>
-            <p className="max-w-3xl text-lg text-gray-300 mb-8">
-              The entrepreneurial journey of Prashant Kulkarni - from software engineer to parallel entrepreneur.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Biography Section */}
-      <section className="py-20">
-        <div className="container px-4 md:px-6">
+      <section className="relative min-h-[60vh] bg-gradient-to-br from-lime-600 to-lime-800 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+        <div className="container px-4 md:px-6 py-20 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 text-theme-dark">Prashant Kulkarni: A Parallel Entrepreneur</h2>
-              <p className="text-lg text-theme-muted mb-4">
-                Prashant Kulkarni is a visionary entrepreneur with a dynamic portfolio of ventures that span the food
-                industry and beyond. As a Parallel Entrepreneur, he excels in managing multiple businesses
-                simultaneously, leveraging his expertise, innovation, and strategic thinking to drive success.
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                Parallel Entrepreneur
+                <span className="block mt-2 text-lime-200">Innovator | Speaker | Thinker</span>
+              </h1>
+              <p className="text-xl text-lime-100">
+                From software engineer to visionary entrepreneur, transforming the food industry with innovation and passion.
               </p>
-              <p className="text-lg text-theme-muted mb-4">
-                In his role as the Director of Tasty Alphabets, Prashant has revolutionized the field of food, foodtech,
-                food education, packaging standards, food standardization. Tasty Alphabets is an innovative platform
-                that combines culinary education with language learning, providing a unique and engaging experience for
-                children.
-              </p>
-              <p className="text-lg text-theme-muted">
-                Prashant serves as the CEO of Food Franchise India and Food Business India, two leading organizations
-                dedicated to nurturing growth and innovation in the food franchise industry. Under his guidance, these
-                platforms have become invaluable resources for aspiring entrepreneurs, offering comprehensive guidance,
-                industry insights, and networking opportunities.
-              </p>
+              <div className="flex gap-4">
+                <Link href="/contact">
+                  <Button className="bg-white text-lime-600 hover:bg-lime-50">
+                    Get in Touch
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/events">
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                    Book for Event
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/prashant1.jpg"
                 alt="Prashant Kulkarni"
                 fill
                 className="object-cover"
+                priority
               />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Biography Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-4 md:px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-lime-600 to-lime-500 bg-clip-text text-transparent">
+              Visionary Leader in Food Industry
+            </h2>
+            <div className="prose prose-lg mx-auto">
+              <p className="text-gray-600 mb-6">
+                Prashant Kulkarni is a visionary entrepreneur with a dynamic portfolio of ventures that span the food
+                industry and beyond. As a Parallel Entrepreneur, he excels in managing multiple businesses
+                simultaneously, leveraging his expertise, innovation, and strategic thinking to drive success.
+              </p>
+              <p className="text-gray-600 mb-6">
+                In his role as the Director of Tasty Alphabets, Prashant has revolutionized the field of food, foodtech,
+                food education, packaging standards, food standardization. Tasty Alphabets is an innovative platform
+                that combines culinary education with language learning, providing a unique and engaging experience for
+                children.
+              </p>
+              <p className="text-gray-600">
+                Prashant serves as the CEO of Food Franchise India and Food Business India, two leading organizations
+                dedicated to nurturing growth and innovation in the food franchise industry. Under his guidance, these
+                platforms have become invaluable resources for aspiring entrepreneurs, offering comprehensive guidance,
+                industry insights, and networking opportunities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Timeline Section */}
+      {/* Achievements Section */}
       <section className="py-20 bg-gray-50">
         <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Prashant Kulkarni's Story</h2>
-            <div className="w-20 h-1 bg-black mb-8"></div>
-            <p className="max-w-3xl text-lg text-muted-foreground">
-              Prashant Kulkarni: A Journey of Entrepreneurial Spirit and Inspiring Ventures
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Recognition & Impact</h2>
+            <div className="w-20 h-1 bg-lime-500 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Awards, accolades, and the impact of Prashant Kulkarni's entrepreneurial journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {achievements.map((achievement, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group"
+              >
+                <div className="text-lime-600 mb-4 group-hover:scale-110 transition-transform">
+                  {achievement.icon}
+                </div>
+                <div className="text-sm font-medium text-lime-600 mb-2">{achievement.year}</div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{achievement.title}</h3>
+                <p className="text-gray-600">{achievement.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-20 bg-white">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Journey Through Time</h2>
+            <div className="w-20 h-1 bg-lime-500 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              A timeline of Prashant Kulkarni's entrepreneurial journey and key milestones.
             </p>
           </div>
 
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-lime-200"></div>
 
             <div className="space-y-16">
               {timelineData.map((item, index) => (
@@ -197,30 +280,31 @@ export default function AboutPage() {
                     index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                   }`}
                 >
-                  {/* Image Side */}
-                  <div className="w-1/2 px-8">
-                    <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg">
+                  {/* Image Container */}
+                  <div className="w-full md:w-1/2">
+                    <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl group">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                   </div>
 
                   {/* Content Side */}
                   <div className="w-1/2 px-8">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                      <div className="text-2xl font-bold text-theme-primary mb-2">{item.year}</div>
-                      <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border border-lime-100">
+                      <div className="text-2xl font-bold text-lime-600 mb-2">{item.year}</div>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-900">{item.title}</h3>
                       <p className="text-gray-600">{item.description}</p>
                     </div>
                   </div>
 
                   {/* Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-theme-primary rounded-full"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-lime-500 rounded-full"></div>
                 </div>
               ))}
             </div>
@@ -228,98 +312,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Recognition Section */}
-      <section className="py-20">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Recognition & Impact</h2>
-            <div className="w-20 h-1 bg-black mb-8"></div>
-            <p className="max-w-3xl text-lg text-muted-foreground">
-              Awards, accolades, and the impact of Prashant Kulkarni's entrepreneurial journey.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AwardCard
-              title="CNBC Masterpreneur"
-              description="Recognized for exceptional entrepreneurial skills and business acumen."
-              year="2019"
-            />
-
-            <AwardCard
-              title="Super Startup Asia"
-              description="Honored for innovative business models and sustainable growth strategies."
-              year="2018"
-            />
-
-            <AwardCard
-              title="Food Innovator of the Year"
-              description="Awarded for revolutionizing the street food industry with standardized processes."
-              year="2017"
-            />
-
-            <AwardCard
-              title="Franchise Leadership Award"
-              description="Recognized for outstanding contribution to the franchise ecosystem in India."
-              year="2016"
-            />
-
-            <AwardCard
-              title="Young Entrepreneur Award"
-              description="Honored for exceptional business leadership and innovation at a young age."
-              year="2015"
-            />
-
-            <AwardCard
-              title="Business Excellence Award"
-              description="Recognized for operational excellence and business transformation."
-              year="2014"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-16 bg-black text-white">
+      {/* <section className="py-20 bg-gradient-to-br from-lime-600 to-lime-800 text-white">
         <div className="container px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-8 md:mb-0 text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Connect?</h2>
-              <p className="text-gray-300 max-w-md">
-                Reach out to discuss speaking engagements, partnerships, or mentorship opportunities.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Connect?</h2>
+            <p className="text-xl text-lime-100 mb-8">
+              Let's discuss how we can work together to achieve your goals.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button className="bg-white text-black hover:bg-gray-200">Contact Me</Button>
+                <Button className="bg-white text-lime-600 hover:bg-lime-50 px-8 py-6 text-lg">
+                  Get in Touch
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
               </Link>
               <Link href="/events">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10">
-                  Book for an Event
+                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+                  Book for Event
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
-  )
-}
-
-function AwardCard({
-  title,
-  description,
-  year,
-}: {
-  title: string
-  description: string
-  year: string
-}) {
-  return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-      <div className="text-sm font-medium text-muted-foreground mb-2">{year}</div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
-    </div>
   )
 }

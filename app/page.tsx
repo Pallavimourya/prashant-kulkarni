@@ -151,36 +151,9 @@ export default function Home() {
 
           <LatestEvents />
 
-          <div className="flex justify-center mt-12">
-            <Link href="/events">
-              <Button className="bg-theme-primary hover:bg-theme-secondary text-white">Book Me For An Event</Button>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Newsletter Section
-      <section className="py-16 bg-theme-dark text-white">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">SIGN UP FOR IDEAS</h2>
-            <p className="max-w-2xl text-gray-300 mb-8">
-              Join my newsletter to receive the latest insights, ideas, and updates directly in your inbox.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="px-4 py-3 rounded-md bg-theme-primary/20 text-white border border-theme-primary/30 focus:outline-none focus:ring-2 focus:ring-theme-accent flex-grow"
-                required
-              />
-              <Button type="submit" className="bg-theme-accent text-white hover:bg-theme-accent/90">
-                Subscribe
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section> */}
 
       {/* Scroll Down Indicator */}
       <div className="fixed bottom-8 right-8 z-50 hidden md:block">

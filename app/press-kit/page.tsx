@@ -246,7 +246,7 @@ export default function PressKitPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24">
+      {/* <section className="py-24">
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-to-br from-lime-600 to-lime-700 text-white shadow-2xl border-0 overflow-hidden">
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
@@ -266,7 +266,7 @@ export default function PressKitPage() {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }

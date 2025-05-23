@@ -40,33 +40,33 @@ export default function BuildEntrepreneursPage() {
               <EntrepreneurHighlight
                 title="Campus Drives"
                 description="Inspiring students at colleges and universities to consider entrepreneurship as a viable career path. These campus drives combine motivational talks with practical workshops on business fundamentals."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/entrepreneurs/img11.jpg"
               />
 
               <EntrepreneurHighlight
                 title="Entrepreneurship Workshops"
                 description="Intensive training sessions focused on developing practical business skills. These workshops cover everything from ideation and business planning to marketing, finance, and scaling strategies."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/entrepreneurs/img12.jpg"
                 imageRight
               />
 
               <EntrepreneurHighlight
                 title="Keynote Speaking"
                 description="Sharing insights and experiences at conferences, seminars, and industry events. Prashant's keynotes inspire action and provide valuable lessons from his entrepreneurial journey."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/entrepreneurs/img13.jpg"
               />
 
               <EntrepreneurHighlight
                 title="Business Coaching"
                 description="Personalized guidance for entrepreneurs facing specific challenges or seeking to scale their ventures. This one-on-one coaching addresses the unique needs and goals of each entrepreneur."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/entrepreneurs/img14.jpg"
                 imageRight
               />
 
               <EntrepreneurHighlight
                 title="Startup Incubation"
                 description="Nurturing new ventures through their early stages with resources, mentorship, and networking opportunities. The incubation program provides a supportive environment for startups to grow and thrive."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/entrepreneurs/img15.jpg"
               />
             </div>
 

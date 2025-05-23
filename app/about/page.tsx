@@ -6,116 +6,116 @@ const timelineData = [
   {
     year: "1987",
     title: "Born",
-    image: "/images/1987.jpg",
+    image: "/Images/1987.jpg",
     description:
       "Born in 1987, Prashant Kulkarni's entrepreneurial journey began at a young age, where he exhibited a remarkable drive for innovation and a keen business sense.",
   },
   {
     year: "1996",
     title: "Selling Paper Boats",
-    image: "/images/1996.jpg",
+    image: "/Images/1996.jpg",
     description:
       "Sold paper boats at 25 paisa for 50 boats to buy orange candies.",
   },
   {
     year: "1997",
     title: "Summer Magazine Library",
-    image: "/images/1997.jpg",
+    image: "/Images/1997.jpg",
     description:
       "Setup magazine library (Champak, Chacha Chaudhary, Pinky) to buy marbles (kanche).",
   },
   {
     year: "1998",
     title: "Video Cassette Library & VCR Rental",
-    image: "/images/1998.jpg",
+    image: "/Images/1998.jpg",
     description: "Managing Video Cassette library & VCR rental.",
   },
   {
     year: "2001",
     title: "Book Trading & Aquarium Passion",
-    image: "/images/2001.jpg",
+    image: "/Images/2001.jpg",
     description:
       "Bought books from 'kabadiwala' and sold them to buy new fishes for aquarium.",
   },
   {
     year: "2003",
     title: "SIM Cards & Tyre Tube Shop",
-    image: "/images/2003.jpg",
+    image: "/Images/2003.jpg",
     description:
       "Sold SIM cards to college students (earned ₹300 per activation) & managed tyre tube shop.",
   },
   {
     year: "2006",
     title: "Tyre Tube Factory Setup",
-    image: "/images/2006.jpg",
+    image: "/Images/2006.jpg",
     description:
       "Helped father set up tyre tube factory at Nimrani Industrial Area.",
   },
   {
     year: "2007",
     title: "Joined Infosys",
-    image: "/images/2007.jpg",
+    image: "/Images/2007.jpg",
     description:
       "Managed projects, implemented innovations, and organized events.",
   },
   {
     year: "2009",
     title: "Chatar Patar Concept",
-    image: "/images/2009.jpg",
+    image: "/Images/2009.jpg",
     description: "Started working on Chatar Patar snack concept.",
   },
   {
     year: "2011",
     title: "Chatar Patar Pvt Ltd",
-    image: "/images/2011.jpg",
+    image: "/Images/2011.jpg",
     description:
       "Registered Pvt Ltd company and expanded Chatar Patar nationally.",
   },
   {
     year: "2013",
     title: "Boxo Burger",
-    image: "/images/2013.jpg",
+    image: "/Images/2013.jpg",
     description:
       "Launched Boxo Burger, a subsidiary to diversify food ventures.",
   },
   {
     year: "2015",
     title: "Andeywala & CNBC Award",
-    image: "/images/2015.jpg",
+    image: "/Images/2015.jpg",
     description:
       "Andeywala received CNBC Masterpreneur award.",
   },
   {
     year: "2016",
     title: "Franchise Consulting",
-    image: "/images/2016.jpg",
+    image: "/Images/2016.jpg",
     description:
       "Started franchise consulting with Connect Franchise.",
   },
   {
     year: "2017",
     title: "Masterpreneur Award by ET Now",
-    image: "/images/2017.jpg",
+    image: "/Images/2017.jpg",
     description:
       "Awarded Masterpreneur by Times Now & ET Now.",
   },
   {
     year: "2019",
     title: "Entrepreneur of the Year",
-    image: "/images/2019.jpg",
+    image: "/Images/2019.jpg",
     description: "Honored as Entrepreneur of the Year.",
   },
   {
     year: "2020",
     title: "Zuper World",
-    image: "/images/2020.jpg",
+    image: "/Images/2020.jpg",
     description:
       "Launched Zuper World to support new entrepreneurs.",
   },
   {
     year: "2023",
     title: "On a Mission to Help Entrepreneurs",
-    image: "/images/2023.jpg",
+    image: "/Images/2023.jpg",
     description:
       "On a mission to uplift entrepreneurs across India.",
   },

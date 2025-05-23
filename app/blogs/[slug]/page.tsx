@@ -44,13 +44,13 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Blog post not found</h1>
-          <Link href="/blogs">
-            <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blogs
-            </Button>
-          </Link>
+        <h1 className="text-2xl font-bold mb-4">Blog post not found</h1>
+        <Link href="/blogs">
+          <Button variant="outline">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Blogs
+          </Button>
+        </Link>
         </div>
       </div>
     )
@@ -58,12 +58,12 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Link href="/blogs">
+        <Link href="/blogs">
         <Button variant="outline" className="mb-8">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Blogs
-        </Button>
-      </Link>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Blogs
+          </Button>
+        </Link>
 
       <article className="prose prose-lg max-w-none">
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
@@ -74,6 +74,6 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
         <h1 className="text-4xl font-bold mb-6">{blog.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
       </article>
-    </div>
+      </div>
   )
 }

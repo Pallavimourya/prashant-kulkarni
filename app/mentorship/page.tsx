@@ -77,7 +77,7 @@ export default function MentorshipPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
               Transform Your Business Journey
-            </h1>
+        </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Get personalized guidance from a successful entrepreneur with 15+ years of experience in building and scaling businesses.
             </p>
@@ -96,7 +96,7 @@ export default function MentorshipPage() {
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">500+</div>
               <div className="text-muted-foreground">Mentees</div>
-            </div>
+        </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">15+</div>
               <div className="text-muted-foreground">Years Experience</div>
@@ -104,7 +104,7 @@ export default function MentorshipPage() {
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">90%</div>
               <div className="text-muted-foreground">Success Rate</div>
-            </div>
+              </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">50+</div>
               <div className="text-muted-foreground">Companies Founded</div>
@@ -171,8 +171,8 @@ export default function MentorshipPage() {
                     <div>
                       <div className="font-semibold">{testimonial.name}</div>
                       <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                    </div>
-                  </div>
+          </div>
+        </div>
                   <p className="text-muted-foreground">{testimonial.content}</p>
                 </CardContent>
               </Card>

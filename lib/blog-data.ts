@@ -16,7 +16,7 @@ export interface BlogPost {
       title: "Chatar Patar: A Success Story of Innovation and Passion",
       excerpt: "From humble beginnings to becoming a household name, Chatar Patar's journey is a testament to innovation, quality, and customer satisfaction. Discover how this street food brand revolutionized the panipuri industry.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/Images/blogs/chatar-patar.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/Images/events/event.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">CHATAR PATAR: A SUCCESS STORY OF INNOVATION AND PASSION</h2>
@@ -139,7 +139,7 @@ export interface BlogPost {
       title: "From Coding Software to Selling Panipuri",
       excerpt: "In a remarkable twist of fate, Prashant Kulkarni's journey took him from coding software to selling one of India's most beloved street foods, panipuri. His inspiring story is a testament to the power of following one's passion, taking risks, and embracing entrepreneurial opportunities.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/public/Images/blogs/panipuri.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/Images/blogs/panipuri.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">FROM CODING SOFTWARE TO SELLING PANIPURI: PRASHANT KULKARNI'S INSPIRING "CHATAR PATAR" STORY</h2>

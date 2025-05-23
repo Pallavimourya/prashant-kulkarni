@@ -56,74 +56,74 @@ export default function SettingsPage() {
         </Button>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>General Settings</CardTitle>
-          <CardDescription>Configure the basic information for your website.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="site-name">Site Name</Label>
-              <Input
-                id="site-name"
+          <Card>
+            <CardHeader>
+              <CardTitle>General Settings</CardTitle>
+              <CardDescription>Configure the basic information for your website.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="site-name">Site Name</Label>
+                  <Input
+                    id="site-name"
                 value={settings.siteName}
                 onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-              />
-            </div>
+                  />
+                </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="tagline">Tagline</Label>
-              <Input
-                id="tagline"
+                <div className="space-y-2">
+                  <Label htmlFor="tagline">Tagline</Label>
+                  <Input
+                    id="tagline"
                 value={settings.tagline}
                 onChange={(e) => setSettings({ ...settings, tagline: e.target.value })}
-              />
-            </div>
-          </div>
+                  />
+                </div>
+              </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="site-description">Site Description</Label>
-            <Textarea
-              id="site-description"
-              rows={3}
+              <div className="space-y-2">
+                <Label htmlFor="site-description">Site Description</Label>
+                <Textarea
+                  id="site-description"
+                  rows={3}
               value={settings.siteDescription}
               onChange={(e) => setSettings({ ...settings, siteDescription: e.target.value })}
-            />
-          </div>
+                />
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
-              <Input
-                id="email"
-                type="email"
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    type="email"
                 value={settings.email}
                 onChange={(e) => setSettings({ ...settings, email: e.target.value })}
-              />
-            </div>
+                  />
+                </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input
+                    id="phone"
                 value={settings.phone}
                 onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
-              />
-            </div>
-          </div>
+                  />
+                </div>
+              </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Textarea
-              id="address"
-              rows={3}
+              <div className="space-y-2">
+                <Label htmlFor="address">Address</Label>
+                <Textarea
+                  id="address"
+                  rows={3}
               value={settings.address}
               onChange={(e) => setSettings({ ...settings, address: e.target.value })}
-            />
-          </div>
-        </CardContent>
-      </Card>
+                />
+              </div>
+            </CardContent>
+          </Card>
     </div>
   )
 }

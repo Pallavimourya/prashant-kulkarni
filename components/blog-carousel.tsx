@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
 const blogImages = {
-  "chatar-patar": "/Images/blogs/chatarpatar.jpg",
+  "chatar-patar": "/Images/blogs/chatar-patar.jpg",
   "food-innovation": "/Images/blogs/infosys.jpg",
   "business-growth": "/Images/blogs/panipuri.jpg"
 }
@@ -55,10 +55,12 @@ export default function BlogCarousel() {
               <div className="grid md:grid-cols-2 gap-6 h-full">
                 <div className="relative h-[300px] md:h-auto w-full">
                   <Image
-                    src={blogImages[blogs[currentIndex].slug as keyof typeof blogImages] || "/Images/blogs/default.jpg"}
+                    src={blogImages[blogs[currentIndex].slug as keyof typeof blogImages] || "/Images/blogs/chatar-patar.jpg"}
                     alt={blogs[currentIndex].title}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 </div>
@@ -92,14 +94,14 @@ export default function BlogCarousel() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6 text-lime-600" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6 text-lime-600" />

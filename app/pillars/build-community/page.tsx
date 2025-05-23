@@ -40,33 +40,33 @@ export default function BuildCommunityPage() {
               <CommunityHighlight
                 title="Golden Sparrow India"
                 description="An initiative celebrating excellence and innovation across various sectors. Golden Sparrow India recognizes outstanding contributions to industry and society, creating a community of changemakers and innovators."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/community/img1.jpg"
               />
 
               <CommunityHighlight
                 title="Vrikshamulah"
                 description="A community-focused environmental sustainability project promoting green practices and ecological awareness. Vrikshamulah brings together environmentally conscious individuals and organizations to create positive environmental impact."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/community/img2.jpg"
                 imageRight
               />
 
               <CommunityHighlight
                 title="Food Business Network"
                 description="A platform connecting food entrepreneurs, suppliers, investors, and industry experts. The Food Business Network facilitates knowledge sharing, collaboration, and business opportunities within the food ecosystem."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/community/img3.jpg"
               />
 
               <CommunityHighlight
                 title="Entrepreneur Circles"
                 description="Peer learning groups that bring together entrepreneurs at various stages of their journey. These circles provide a supportive environment for sharing challenges, solutions, and growth strategies."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/community/img4.jpg"
                 imageRight
               />
 
               <CommunityHighlight
                 title="Industry Meetups"
                 description="Regular gatherings that bring together professionals from various sectors to network, share insights, and explore collaboration opportunities. These meetups have led to numerous partnerships and innovative ventures."
-                image="https://drive.google.com/uc?export=download&id=1uemfG0AJo1Tg4pUJSxYzl59f7ZvHw0lB"
+                image="/Images/community/img5.jpg"
               />
             </div>
 

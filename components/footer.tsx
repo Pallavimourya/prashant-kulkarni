@@ -12,6 +12,20 @@ import {
   PinIcon as Pinterest,
 } from "lucide-react"
 
+const footerLinks = [
+  {
+    title: "Navigation",
+    links: [
+      { name: "Home", href: "/" },
+      { name: "About", href: "/about" },
+      { name: "Blogs", href: "/blogs" },
+      { name: "Mentorship", href: "/mentorship" },
+      { name: "Contact", href: "/contact" },
+    ],
+  },
+  // ... other footer sections ...
+]
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 

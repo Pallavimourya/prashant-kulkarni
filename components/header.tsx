@@ -28,6 +28,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Mentorship", href: "/mentorship" },
+    { name: "Contact", href: "/contact" },
+  ]
+
+  const mobileNavigation = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Mentorship", href: "/mentorship" },
+    { name: "Contact", href: "/contact" },
+  ]
+
   return (
     <header
       className={cn(
@@ -57,15 +73,7 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {[
-              { name: "Home", href: "/" },
-              { name: "About", href: "/about" },
-              { name: "Mentorship", href: "/mentorship" },
-              { name: "Gallery", href: "/gallery" },
-              { name: "Press Kit", href: "/press-kit" },
-              { name: "Events", href: "/events" },
-              { name: "Blogs", href: "/blogs" },
-            ].map((item) => (
+            {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -118,17 +126,7 @@ export default function Header() {
         >
           <div className="absolute inset-0 bg-theme-dark/95 backdrop-blur-sm" />
           <nav className="relative flex flex-col items-center space-y-6 p-8 pt-20">
-            {[
-              { name: "Home", href: "/" },
-              { name: "About", href: "/about" },
-              { name: "Mentorship", href: "/mentorship" },
-              { name: "Gallery", href: "/gallery" },
-              { name: "Press Kit", href: "/press-kit" },
-              { name: "Events", href: "/events" },
-              { name: "Blogs", href: "/blogs" },
-              { name: "Ideas", href: "/ideas" },
-              { name: "Contact", href: "/contact" },
-            ].map((item) => (
+            {mobileNavigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}

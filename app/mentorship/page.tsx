@@ -3,68 +3,85 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Users, Target, Award, Clock, MessageSquare } from "lucide-react"
+import { ArrowRight, Users, Target, Award, Clock, MessageSquare, Star, Trophy, Quote, ChefHat, Coffee, Utensils, Soup } from "lucide-react"
 
 const programs = [
   {
-    title: "Startup Mentorship",
-    description: "One-on-one guidance for early-stage startups",
+    title: "Plus Food Training",
+    description: "Comprehensive training program for food entrepreneurs",
     duration: "3 months",
-    sessions: "12 sessions",
+    sessions: "24 sessions",
+    price: "₹75,000",
+    features: [
+      "Advanced food preparation techniques",
+      "Business operations management",
+      "Quality control systems",
+      "Customer service excellence"
+    ],
+    icon: <ChefHat className="h-8 w-8 text-lime-600" />
+  },
+  {
+    title: "Andeywala Food Training",
+    description: "Specialized training for egg-based food businesses",
+    duration: "2 months",
+    sessions: "16 sessions",
     price: "₹50,000",
     features: [
-      "Business model validation",
-      "Market strategy development",
-      "Pitch deck preparation",
-      "Investor connections"
-    ]
+      "Egg-based recipe development",
+      "Food safety standards",
+      "Inventory management",
+      "Cost optimization"
+    ],
+    icon: <Coffee className="h-8 w-8 text-lime-600" />
   },
   {
-    title: "Business Growth",
-    description: "Strategic guidance for scaling businesses",
-    duration: "6 months",
-    sessions: "24 sessions",
+    title: "Punchaiyat Food Training",
+    description: "Traditional food business training program",
+    duration: "4 months",
+    sessions: "32 sessions",
     price: "₹1,00,000",
     features: [
-      "Growth strategy planning",
-      "Team building & leadership",
-      "Process optimization",
-      "International expansion"
-    ]
+      "Traditional recipe preservation",
+      "Modern business practices",
+      "Marketing strategies",
+      "Supply chain management"
+    ],
+    icon: <Utensils className="h-8 w-8 text-lime-600" />
   },
   {
-    title: "Executive Coaching",
-    description: "Personal development for business leaders",
-    duration: "12 months",
-    sessions: "48 sessions",
-    price: "₹2,00,000",
+    title: "Bakaiti Food Training",
+    description: "Street food business development program",
+    duration: "2 months",
+    sessions: "16 sessions",
+    price: "₹45,000",
     features: [
-      "Leadership development",
-      "Strategic decision making",
-      "Work-life balance",
-      "Personal branding"
-    ]
+      "Street food preparation",
+      "Mobile business setup",
+      "Location optimization",
+      "Customer engagement"
+    ],
+    icon: <Soup className="h-8 w-8 text-lime-600" />
   }
 ]
 
 const testimonials = [
   {
     name: "Rahul Sharma",
-    role: "Founder, TechStart",
-    content: "Prashant's mentorship helped me transform my startup idea into a successful business. His insights on market strategy were invaluable.",
-    image: "/testimonials/rahul.jpg"
+    role: "Plus Food Graduate",
+    content: "The Plus Food Training program transformed my approach to food business. I've successfully opened three outlets and expanded my menu offerings.",
+    icon: <Trophy className="h-8 w-8 text-lime-600" />
   },
   {
     name: "Priya Patel",
-    role: "CEO, GrowthLabs",
-    content: "The business growth program gave me the tools and confidence to scale my company from 10 to 100 employees.",
-    image: "/testimonials/priya.jpg"
+    role: "Andeywala Graduate",
+    content: "The specialized egg-based training helped me create unique recipes and establish a successful breakfast chain. The business insights were invaluable.",
+    icon: <Award className="h-8 w-8 text-lime-600" />
   },
   {
-    name: "Amit Kumar",
-    role: "Director, InnovateCorp",
-    content: "Executive coaching with Prashant helped me become a more effective leader and make better strategic decisions.",
-    image: "/testimonials/amit.jpg"
+    name: "Vikram Singh",
+    role: "Punchaiyat Graduate",
+    content: "Learning to balance traditional recipes with modern business practices has helped me preserve our culinary heritage while growing a successful business.",
+    icon: <Star className="h-8 w-8 text-lime-600" />
   }
 ]
 
@@ -75,11 +92,11 @@ export default function MentorshipPage() {
       <section className="relative py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
-              Transform Your Business Journey
-        </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-lime-600 to-lime-400">
+              Food Business Excellence
+            </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Get personalized guidance from a successful entrepreneur with 15+ years of experience in building and scaling businesses.
+              Transform your food business with expert training and mentorship from industry leaders
             </p>
             <Button size="lg" className="gap-2 bg-lime-600 hover:bg-lime-700 text-white">
               Book a Free Consultation
@@ -89,25 +106,22 @@ export default function MentorshipPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-white">
+      {/* Mission Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-muted-foreground">Mentees</div>
-        </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">15+</div>
-              <div className="text-muted-foreground">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">90%</div>
-              <div className="text-muted-foreground">Success Rate</div>
-              </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Companies Founded</div>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Our Mission</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Our Mission is to foster and nurture entrepreneurship in India by providing valuable resources, 
+              mentorship, and guidance to aspiring entrepreneurs, empowering them to create successful ventures 
+              and contribute to the country's economic growth.
+            </p>
+            <div className="relative">
+              <Quote className="h-12 w-12 text-lime-600 mx-auto mb-4" />
+              <p className="text-xl italic text-gray-700">
+                "Success is a journey, and mentorship is the compass that guides you towards your destination."
+              </p>
+              <p className="text-lime-600 font-semibold mt-2">- Prashant Kulkarni</p>
             </div>
           </div>
         </div>
@@ -116,11 +130,14 @@ export default function MentorshipPage() {
       {/* Programs Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Mentorship Programs</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Training Programs</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {programs.map((program, index) => (
               <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-all border-lime-200">
                 <CardHeader>
+                  <div className="h-12 w-12 rounded-full bg-lime-50 flex items-center justify-center mb-4">
+                    {program.icon}
+                  </div>
                   <CardTitle>{program.title}</CardTitle>
                   <CardDescription>{program.description}</CardDescription>
                 </CardHeader>
@@ -143,7 +160,7 @@ export default function MentorshipPage() {
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-4 bg-lime-600 hover:bg-lime-700 text-white">Get Started</Button>
+                    <Button className="w-full mt-4 bg-lime-600 hover:bg-lime-700 text-white">Enroll Now</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -152,28 +169,35 @@ export default function MentorshipPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      {/* Success Stories Section */}
+      <section className="py-20 bg-gradient-to-br from-white to-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Success Stories</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-lime-600 to-lime-400">
+              Success Stories
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Hear from entrepreneurs who have transformed their food businesses through our training programs
+            </p>
+          </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="relative">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="h-full w-full object-cover"
-                      />
+              <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-all border-lime-100">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Quote className="h-24 w-24 text-lime-600" />
+                </div>
+                <CardContent className="pt-8 pb-6 px-6">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-14 w-14 rounded-full bg-lime-50 flex items-center justify-center">
+                      {testimonial.icon}
                     </div>
                     <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-          </div>
-        </div>
-                  <p className="text-muted-foreground">{testimonial.content}</p>
+                      <div className="font-semibold text-lg text-gray-800">{testimonial.name}</div>
+                      <div className="text-sm text-lime-600 font-medium">{testimonial.role}</div>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">{testimonial.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -186,9 +210,9 @@ export default function MentorshipPage() {
         <div className="container mx-auto px-4">
           <Card className="bg-lime-600 text-white">
             <CardContent className="py-12 text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
+              <h2 className="text-3xl font-bold mb-4">Ready to Start Your Food Business Journey?</h2>
               <p className="text-lg mb-8 max-w-2xl mx-auto">
-                Join hundreds of successful entrepreneurs who have transformed their businesses with personalized mentorship.
+                Join hundreds of successful food entrepreneurs who have transformed their businesses with our specialized training programs.
               </p>
               <Button variant="secondary" size="lg" className="gap-2 bg-white text-lime-600 hover:bg-lime-50">
                 Schedule a Call

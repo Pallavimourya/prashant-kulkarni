@@ -70,7 +70,7 @@ export interface BlogPost {
       title: "Prashant Kulkarni: The Entrepreneurial Journey",
       excerpt: "From software engineer to successful entrepreneur, Prashant Kulkarni's journey is a story of passion, innovation, and determination. Learn how he transformed his vision into a thriving business.",
       content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/Images/blogs/infosys.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/Images/blogs/img2.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
       <h2 class="text-3xl font-bold mb-6">PRASHANT KULKARNI: THE ENTREPRENEURIAL JOURNEY</h2>
@@ -131,7 +131,7 @@ export interface BlogPost {
       <p>Prashant Kulkarni's journey is a testament to the power of passion, innovation, and perseverance. His story continues to inspire entrepreneurs and food enthusiasts alike, proving that with the right vision and execution, anything is possible.</p>`,
       date: "June 18, 2023",
       category: "Entrepreneurship",
-      featuredImage: "/Images/blogs/infosys.jpg",
+      featuredImage: "/Images/blogs/img2.jps",
     },
     {
       id: "3",
@@ -176,7 +176,7 @@ export interface BlogPost {
       excerpt:
         "In a bold move that showcases the spirit of entrepreneurship and a passion for healthy eating, an Infosys techie, Prashant Kulkarni, made the decision to leave his corporate job.",
         content: `<div class="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden shadow-xl">
-        <img src="/Images/blogs/chatarpatar.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
+        <img src="/Images/blogs/entrepreneurship.jpg" alt="Chatar Patar Store" class="w-full h-full object-cover" />
       </div>
 
   <h3>The Spark of Inspiration</h3>
@@ -197,7 +197,7 @@ export interface BlogPost {
   <p>Prashant Kulkarni's transformation from an Infosys techie to the founder of Chatar Patar reflects the power of determination and a passion for healthy eating. Through his brand, he has not only introduced a new wave of flavorful and nutritious chaat options but also inspired others to pursue their dreams and make a positive impact. As Chatar Patar continues to thrive, it serves as a reminder that following one's passion and striving for innovation can lead to remarkable success in the food industry.</p>`,
       date: "June 15, 2023",
       category: "Newsroom",
-      featuredImage: "/public/Images/blogs/chatarpatar.jpg",
+      featuredImage: "/public/Images/blogs/img4.jpg",
     },
     {
       id: "5",

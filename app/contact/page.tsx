@@ -16,7 +16,7 @@ export default function ContactPage() {
             <p className="max-w-3xl text-lg text-gray-300">
               Connect with Prashant Kulkarni for speaking engagements, partnerships, mentorship, or media inquiries.
             </p>
-          </div>
+      </div>
         </div>
       </section>
 
@@ -39,8 +39,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium mb-1">Email</h3>
                     <p className="text-muted-foreground">contact@prashantkulkarni.com</p>
-                  </div>
-                </div>
+        </div>
+      </div>
 
                 <div className="flex items-start">
                   <div className="bg-black text-white p-3 rounded-full mr-4">
@@ -49,14 +49,14 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-medium mb-1">Phone</h3>
                     <p className="text-muted-foreground">+91 1234567890</p>
-                  </div>
-                </div>
+                    </div>
+      </div>
 
                 <div className="flex items-start">
                   <div className="bg-black text-white p-3 rounded-full mr-4">
                     <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
+              </div>
+              <div>
                     <h3 className="font-medium mb-1">Office</h3>
                     <p className="text-muted-foreground">
                       Food Franchise India
@@ -75,7 +75,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div>
+              <div>
               <h2 className="text-3xl font-bold mb-6">Send a Message</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -106,14 +106,14 @@ export default function ContactPage() {
                     Phone Number
                   </label>
                   <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
-                </div>
+              </div>
 
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-medium">
                     Subject
                   </label>
                   <Input id="subject" placeholder="How can I help you?" required />
-                </div>
+              </div>
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">
@@ -125,7 +125,7 @@ export default function ContactPage() {
                     className="min-h-[150px]"
                     required
                   />
-                </div>
+              </div>
 
                 <Button type="submit" className="w-full bg-black hover:bg-gray-800 text-white">
                   <Send className="mr-2 h-4 w-4" />
@@ -189,10 +189,10 @@ export default function ContactPage() {
               />
               <Button type="submit" className="bg-white text-black hover:bg-gray-200">
                 Subscribe
-              </Button>
+                </Button>
             </form>
-          </div>
-        </div>
+              </div>
+            </div>
       </section>
     </main>
   )

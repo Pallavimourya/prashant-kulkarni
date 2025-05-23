@@ -26,13 +26,13 @@ export default function ThreePillars() {
 
           <PillarCard
             title="Build Community"
-            image="/img.jpg"
+            image="/Images/community.jpg"
             href="/pillars/build-community"
           />
 
           <PillarCard
             title="Build Entrepreneurs"
-            image="/img.jpg"
+            image="/Images/enter.jpg"
             href="/pillars/build-entrepreneurs"
           />
         </div>

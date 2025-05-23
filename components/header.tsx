@@ -136,14 +136,14 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Link
+            {/* <Link
               href="/admin/login"
               className="text-white text-lg font-medium hover:opacity-70 transition-opacity flex items-center gap-2"
               onClick={() => setIsOpen(false)}
             >
               <LogIn className="w-4 h-4" />
               Admin Portal
-            </Link>
+            </Link> */}
           </nav>
         </div>
       )}

@@ -1,9 +1,12 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import VideoPopup from "@/components/video-popup"
 
 export default function EventsPage() {
   const youtubeVideos = [
@@ -75,7 +78,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Join Prashant at these upcoming speaking engagements and events.
             </p>
-      </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -117,7 +120,7 @@ export default function EventsPage() {
                   <div className="flex items-center text-muted-foreground mb-2">
                     <Calendar className="h-4 w-4 mr-2" />
                     <span className="text-sm">{event.date}</span>
-                </div>
+                  </div>
                   <div className="flex items-center text-muted-foreground mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span className="text-sm">{event.location}</span>
@@ -142,7 +145,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Watch recordings and highlights from Prashant's previous speaking engagements.
             </p>
-                </div>
+          </div>
 
           <Tabs defaultValue="videos" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
@@ -151,39 +154,45 @@ export default function EventsPage() {
             </TabsList>
 
             <TabsContent value="videos" className="mt-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {youtubeVideos.map((video) => (
-                  <Card key={video.id} className="overflow-hidden">
-                    <Link href={video.url} target="_blank" rel="noopener noreferrer">
-                      <div className="relative aspect-video">
-                        <Image
-                          src={video.thumbnail || "/placeholder.svg"}
-                          alt={video.title}
-                          fill
-                          className="object-cover transition-transform hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
-                            <div className="w-0 h-0 border-t-8 border-t-transparent border-l-16 border-l-red-600 border-b-8 border-b-transparent ml-1"></div>
+              <VideoPopup>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {youtubeVideos.map((video) => (
+                    <Card key={video.id} className="overflow-hidden">
+                      <a href={video.url} className="video-popup">
+                        <div className="relative aspect-video">
+                          <Image
+                            src={video.thumbnail || "/placeholder.svg"}
+                            alt={video.title}
+                            fill
+                            className="object-cover transition-transform hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <div className="w-14 h-14 rounded-full bg-red-600 bg-opacity-90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                              <svg
+                                className="w-6 h-6 text-white ml-1"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                              </svg>
+                            </div>
                           </div>
+                        </div>
+                      </a>
+                      <CardContent className="p-4">
+                        <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
+                        <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
+                        <a
+                          href={video.url}
+                          className="video-popup text-blue-600 hover:underline text-sm"
+                        >
+                          Watch on YouTube
+                        </a>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
-              </div>
-                    </Link>
-                    <CardContent className="p-4">
-                      <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
-                      <h3 className="font-semibold text-lg mb-2">{video.title}</h3>
-                      <Link
-                        href={video.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline text-sm"
-                      >
-                        Watch on YouTube
-                      </Link>
-            </CardContent>
-          </Card>
-                ))}
-        </div>
+              </VideoPopup>
 
               <div className="flex justify-center mt-8">
                 <a href="https://www.youtube.com/c/zuperprashant" target="_blank" rel="noopener noreferrer">
@@ -220,8 +229,8 @@ export default function EventsPage() {
                                 View Details
                               </Button>
                             </Link>
-            </CardContent>
-          </Card>
+                          </CardContent>
+                        </Card>
                       ))}
                     </div>
                   </div>
@@ -284,7 +293,7 @@ export default function EventsPage() {
             <p className="max-w-3xl text-lg text-muted-foreground">
               Feedback from event organizers and attendees about Prashant's speaking engagements.
             </p>
-      </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -318,8 +327,8 @@ export default function EventsPage() {
                 </CardContent>
               </Card>
             ))}
-                  </div>
-                </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}
@@ -331,12 +340,12 @@ export default function EventsPage() {
               <p className="text-gray-300 max-w-md">
                 Contact us today to check availability and discuss your event requirements.
               </p>
-              </div>
+            </div>
             <Link href="/contact">
               <Button className="bg-white text-black hover:bg-gray-200">Book Now</Button>
             </Link>
           </div>
-    </div>
+        </div>
       </section>
     </main>
   )

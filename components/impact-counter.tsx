@@ -52,7 +52,7 @@ function Counter({ end, label, suffix = "+", duration = 2000, icon }: CounterPro
           </div>
         )}
         <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-lime-400 to-lime-600 bg-clip-text text-transparent">
-          {count}
+        {count}
           <span className="text-lime-400">{suffix}</span>
         </div>
         <div className="text-lg text-gray-300 font-medium">{label}</div>

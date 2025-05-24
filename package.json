@@ -10,7 +10,7 @@
     "postinstall": "node scripts/install-server-deps.js"
   },
   "dependencies": {
-    "@aws-sdk/credential-providers": "^3.816.0",
+    "@aws-sdk/credential-providers": "^3.817.0",
     "@hookform/resolvers": "^3.9.1",
     "@mongodb-js/zstd": "^2.0.1",
     "@radix-ui/react-accordion": "latest",
@@ -41,6 +41,7 @@
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
     "@supabase/supabase-js": "^2.49.8",
+    "@types/jquery": "^3.5.32",
     "@types/jsonwebtoken": "^9.0.9",
     "autoprefixer": "^10.4.20",
     "bcryptjs": "^3.0.2",
@@ -55,9 +56,11 @@
     "immer": "latest",
     "input-otp": "latest",
     "jose": "^6.0.11",
+    "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "kerberos": "^2.2.2",
     "lucide-react": "^0.454.0",
+    "magnific-popup": "^1.2.0",
     "mongodb": "^6.16.0",
     "mongodb-client-encryption": "^6.4.0",
     "next": "15.2.4",

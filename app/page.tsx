@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6">ð
           <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-theme-dark">My Story</h2>
             <div className="w-20 h-1 bg-theme-accent mb-8"></div>

@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import VideoPopup from "./video-popup"
 
 export default function LatestEvents() {
   const featuredVideos = [
@@ -42,31 +43,39 @@ export default function LatestEvents() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredVideos.map((video) => (
-            <Card key={video.id} className="overflow-hidden">
-              <Link href={video.url} target="_blank" rel="noopener noreferrer">
-                <div className="relative aspect-video">
-                  <Image
-                    src={video.thumbnail || "/placeholder.svg"}
-                    alt={video.title}
-                    fill
-                    className="object-cover transition-transform hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-white bg-opacity-80 flex items-center justify-center">
-                      <div className="w-0 h-0 border-t-6 border-t-transparent border-l-12 border-l-red-600 border-b-6 border-b-transparent ml-1"></div>
+        <VideoPopup>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredVideos.map((video) => (
+              <Card key={video.id} className="overflow-hidden">
+                <a href={video.url} className="video-popup">
+                  <div className="relative aspect-video">
+                    <Image
+                      src={video.thumbnail || "/placeholder.svg"}
+                      alt={video.title}
+                      fill
+                      className="object-cover transition-transform hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-white-700 bg-opacity-90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                        <svg
+                          className="w-12 h-12 text-white ml-1"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-              <CardContent className="p-4">
-                <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
-                <h3 className="font-semibold text-lg">{video.title}</h3>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                </a>
+                <CardContent className="p-4">
+                  <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
+                  <h3 className="font-semibold text-lg">{video.title}</h3>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </VideoPopup>
       </div>
     </section>
   )

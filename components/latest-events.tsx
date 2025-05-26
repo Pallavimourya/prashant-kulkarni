@@ -31,12 +31,12 @@ export default function LatestEvents() {
   ]
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gradient-to-br from-[#FF9933]/5 to-[#138808]/5">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-3xl font-bold">Latest Videos</h2>
+          <h2 className="text-3xl font-bold text-[#138808]">Latest Videos</h2>
           <Link href="/events">
-            <Button variant="outline">
+            <Button variant="outline" className="border-[#FF9933] text-[#FF9933] hover:bg-[#FF9933] hover:text-white">
               View All
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -46,7 +46,7 @@ export default function LatestEvents() {
         <VideoPopup>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredVideos.map((video) => (
-              <Card key={video.id} className="overflow-hidden">
+              <Card key={video.id} className="overflow-hidden border-[#FF9933]/20 hover:border-[#FF9933]/40 transition-colors">
                 <a href={video.url} className="video-popup">
                   <div className="relative aspect-video">
                     <Image
@@ -56,9 +56,9 @@ export default function LatestEvents() {
                       className="object-cover transition-transform hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-white-700 bg-opacity-90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                      <div className="w-6 h-6 rounded-full bg-[#ceeace] bg-opacity-90 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
                         <svg
-                          className="w-12 h-12 text-white ml-1"
+                          className="w-15 h-15 text-white ml-1"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -69,8 +69,8 @@ export default function LatestEvents() {
                   </div>
                 </a>
                 <CardContent className="p-4">
-                  <div className="text-sm text-muted-foreground mb-2">{video.date}</div>
-                  <h3 className="font-semibold text-lg">{video.title}</h3>
+                  <div className="text-sm text-[#138808] mb-2">{video.date}</div>
+                  <h3 className="font-semibold text-lg text-[#FF9933]">{video.title}</h3>
                 </CardContent>
               </Card>
             ))}

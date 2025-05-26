@@ -71,17 +71,17 @@ const contactInfo = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <main className="min-h-screen bg-gradient-to-b from-white to-[#138808]/5">
       {/* Hero Section */}
-      <section className="relative py-24 bg-lime-600 text-white">
+      <section className="relative py-24 bg-gradient-to-br from-[#FF9933] via-white to-[#138808] text-[#000080]">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Let's Connect</h1>
-            <p className="text-xl text-lime-100 mb-8">
+            <p className="text-xl text-[#000080] mb-8">
               Have a question or want to work together? I'm here to help you achieve your goals.
             </p>
-      </div>
+          </div>
         </div>
       </section>
 
@@ -90,23 +90,23 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow">
+              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow border-[#FF9933]/20 hover:border-[#FF9933]/40">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-full bg-lime-100 text-lime-600">
+                    <div className="p-3 rounded-full bg-[#138808]/10 text-[#138808]">
                       {info.icon}
-        </div>
+                    </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{info.title}</h3>
+                      <h3 className="font-semibold text-[#000080]">{info.title}</h3>
                       {info.href ? (
                         <a 
                           href={info.href}
-                          className="text-gray-600 hover:text-lime-600 transition-colors"
+                          className="text-[#138808] hover:text-[#FF9933] transition-colors"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-600">{info.value}</p>
+                        <p className="text-[#138808]">{info.value}</p>
                       )}
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default function ContactPage() {
               </Card>
             ))}
           </div>
-      </div>
+        </div>
       </section>
 
       {/* Main Contact Section */}
@@ -124,75 +124,75 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold mb-4">Send a Message</h2>
+                <h2 className="text-3xl font-bold mb-4 text-[#000080]">Send a Message</h2>
                 <p className="text-gray-600">
                   Fill out the form below and I'll get back to you as soon as possible.
                 </p>
               </div>
-              <Card className="bg-white shadow-lg">
+              <Card className="bg-white shadow-lg border-[#FF9933]/20 hover:border-[#FF9933]/40">
                 <CardContent className="p-8">
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-[#000080] mb-2">
                           Name
                         </label>
                         <Input 
                           id="name" 
                           placeholder="Your name"
-                          className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
+                          className="bg-gray-50 border-gray-200 focus:border-[#138808] focus:ring-[#138808]"
                         />
-              </div>
-              <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-[#000080] mb-2">
                           Email
                         </label>
                         <Input 
                           id="email" 
                           type="email" 
                           placeholder="Your email"
-                          className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
+                          className="bg-gray-50 border-gray-200 focus:border-[#138808] focus:ring-[#138808]"
                         />
                       </div>
-              </div>
-              <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    </div>
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-[#000080] mb-2">
                         Subject
                       </label>
                       <Input 
                         id="subject" 
                         placeholder="What's this about?"
-                        className="bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
+                        className="bg-gray-50 border-gray-200 focus:border-[#138808] focus:ring-[#138808]"
                       />
-              </div>
-              <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-[#000080] mb-2">
                         Message
                       </label>
                       <Textarea 
                         id="message" 
                         placeholder="Your message"
-                        className="min-h-[150px] bg-gray-50 border-gray-200 focus:border-lime-500 focus:ring-lime-500"
+                        className="min-h-[150px] bg-gray-50 border-gray-200 focus:border-[#138808] focus:ring-[#138808]"
                       />
                     </div>
-                    <Button className="w-full bg-lime-600 hover:bg-lime-700 text-white h-12">
+                    <Button className="w-full bg-[#138808] hover:bg-[#138808]/90 text-white h-12">
                       <Send className="mr-2 h-5 w-5" />
                       Send Message
                     </Button>
                   </form>
                 </CardContent>
               </Card>
-              </div>
+            </div>
 
             {/* Social Media & Additional Info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold mb-4">Connect on Social Media</h2>
+                <h2 className="text-3xl font-bold mb-4 text-[#000080]">Connect on Social Media</h2>
                 <p className="text-gray-600">
                   Follow me on social media for daily updates, insights, and inspiration.
                 </p>
               </div>
-              <Card className="bg-white shadow-lg">
+              <Card className="bg-white shadow-lg border-[#FF9933]/20 hover:border-[#FF9933]/40">
                 <CardContent className="p-8">
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {socialLinks.map((link) => (
@@ -201,12 +201,12 @@ export default function ContactPage() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-lime-50 transition-all group"
+                        className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 hover:bg-[#138808]/10 transition-all group"
                       >
-                        <span className="text-gray-600 group-hover:text-lime-600 transition-colors mb-2">
+                        <span className="text-[#138808] group-hover:text-[#FF9933] transition-colors mb-2">
                           {link.icon}
                         </span>
-                        <span className="text-sm text-gray-600 group-hover:text-lime-600 transition-colors">
+                        <span className="text-sm text-[#138808] group-hover:text-[#FF9933] transition-colors">
                           {link.name}
                         </span>
                       </a>
@@ -215,7 +215,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-lime-600 to-lime-700 text-white shadow-lg">
+              <Card className="bg-gradient-to-br from-[#FF9933] to-[#138808] text-white shadow-lg">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">Business Hours</h3>
                   <div className="space-y-2">
@@ -231,12 +231,12 @@ export default function ContactPage() {
                       <span>Sunday</span>
                       <span>Closed</span>
                     </p>
-              </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
-    </div>
+        </div>
       </section>
     </main>
   )

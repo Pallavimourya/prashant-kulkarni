@@ -1,130 +1,90 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Calendar, Clock } from "lucide-react"
 import { getAllBlogs } from "@/lib/blog-data"
-import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
 
 const blogImages = {
-  "chatar-patar": "/Images/blogs/chatar-patar.jpg",
-  "food-innovation": "/Images/blogs/infosys.jpg",
-  "business-growth": "/Images/blogs/panipuri.jpg"
+  "chatarpathar-success-story": "/Images/events/event.jpg",
+  "prashant-kulkarni-entrepreneurial-journey": "/Images/blogs/img2.jpg",
+  "coding-software-to-selling-panipuri": "/Images/blogs/panipuri.jpg",
+  "infosys-techie-leaves-company": "/Images/blogs/entrepreneurship.jpg",
+  "power-of-mentorship": "/Images/blogs/Mentorship.png",
+  "chatar-patar-journey": "/Images/blogs/journey.jpg",
+  "mastering-time-management": "/Images/events/event.jpg",
+  "journey-of-entrepreneurship": "/Images/blogs/entrepreneurship.jpg"
 }
 
 export default function BlogCarousel() {
   const blogs = getAllBlogs().slice(0, 3)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-
-  useEffect(() => {
-    if (!isAutoPlaying) return
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % blogs.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [blogs.length, isAutoPlaying])
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % blogs.length)
-    setIsAutoPlaying(false)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + blogs.length) % blogs.length)
-    setIsAutoPlaying(false)
-  }
 
   return (
-    <div className="relative w-full overflow-hidden py-10 bg-gradient-to-br from-[#fdfbfb] to-[#ebedee]">
-      <div className="relative h-[500px]">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={blogs[currentIndex].id}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 px-6"
-          >
-            <Card className="glassmorphism backdrop-blur-md shadow-xl overflow-hidden h-full">
-              <div className="grid md:grid-cols-2 gap-6 h-full">
-                <div className="relative h-[300px] md:h-auto w-full">
-                  <Image
-                    src={blogImages[blogs[currentIndex].slug as keyof typeof blogImages] || "/Images/blogs/chatar-patar.jpg"}
-                    alt={blogs[currentIndex].title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                </div>
+    <div className="grid md:grid-cols-3 gap-6">
+      {blogs.map((blog) => (
+        <Card 
+          key={blog.id}
+          className="group overflow-hidden border-[#FF9933]/20 hover:border-[#FF9933]/40 transition-all duration-300 hover:shadow-xl"
+        >
+          {/* Image Container */}
+          <div className="relative h-48 overflow-hidden">
+            <Image
+              src={blogImages[blog.slug as keyof typeof blogImages] || "/Images/events/event.jpg"}
+              alt={blog.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 33vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <span className="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-[#FF9933] text-white text-sm font-medium">
+              {blog.category}
+            </span>
+          </div>
 
-                <div className="flex flex-col justify-between p-8">
-                  <div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                      <span>{blogs[currentIndex].date}</span>
-                      <span>•</span>
-                      <span>{blogs[currentIndex].category}</span>
+          {/* Content */}
+          <div className="p-6">
+            <div className="flex items-center gap-4 text-sm text-[#138808] mb-3">
+              <div className="flex items-center gap-1">
+                <Calendar className="h-4 w-4" />
+                <span>{blog.date}</span>
               </div>
-                    <CardTitle className="text-3xl font-semibold mb-4 line-clamp-2 text-gray-800">
-                      {blogs[currentIndex].title}
-                    </CardTitle>
-                    <CardDescription className="text-base line-clamp-4 text-gray-600 mb-6">
-                      {blogs[currentIndex].excerpt}
-                    </CardDescription>
+              <div className="flex items-center gap-1">
+                <Clock className="h-4 w-4" />
+                <span>5 min read</span>
+              </div>
             </div>
-                  <Link href={`/blogs/${blogs[currentIndex].slug}`} className="w-full">
-                    <Button className="w-full group bg-lime-600 text-white hover:bg-lime-700 transition-all">
-                      Read Full Article
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+
+            <CardTitle className="text-xl font-bold mb-3 text-[#000080] line-clamp-2">
+              {blog.title}
+            </CardTitle>
+            
+            <CardDescription className="text-gray-600 mb-4 line-clamp-3">
+              {blog.excerpt}
+            </CardDescription>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-[#138808]/10 flex items-center justify-center">
+                  <span className="text-[#138808] text-sm font-bold">PK</span>
+                </div>
+                <span className="text-sm text-[#000080] font-medium">Prashant Kulkarni</span>
+              </div>
+              <Link href={`/blogs/${blog.slug}`}>
+                <Button 
+                  variant="ghost" 
+                  className="text-[#138808] hover:text-[#138808] hover:bg-[#138808]/10"
+                >
+                  Read
+                  <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </Link>
-                </div>
-              </div>
-          </Card>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <button
-          onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6 text-lime-600" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur z-10"
-        aria-label="Next slide"
-        >
-        <ChevronRight className="h-6 w-6 text-lime-600" />
-      </button>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-        {blogs.map((_, index) => (
-            <button
-              key={index}
-            onClick={() => {
-              setCurrentIndex(index)
-              setIsAutoPlaying(false)
-            }}
-            className={cn(
-              "w-3 h-3 rounded-full transition-all duration-300",
-              currentIndex === index
-                ? "bg-lime-600 scale-125"
-                : "bg-gray-300 hover:bg-gray-400"
-            )}
-            aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-      </div>
+            </div>
+          </div>
+        </Card>
+      ))}
     </div>
   )
 }

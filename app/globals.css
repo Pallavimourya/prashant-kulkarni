@@ -13,31 +13,31 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221 83% 41%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 35 92% 58%; /* Saffron */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 120 73% 35%; /* Green */
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 217 33% 17%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 35 92% 51%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 100% 20%; /* Navy Blue (Ashoka Chakra) */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 221 83% 41%;
+    --ring: 35 92% 58%;
 
     --radius: 0.5rem;
 
-    /* Theme-specific colors */
-    --theme-primary: 221 83% 41%;
-    --theme-secondary: 217 91% 60%;
-    --theme-accent: 35 92% 51%;
+    /* Tiranga Theme Colors */
+    --theme-primary: 35 92% 58%;     /* Saffron */
+    --theme-secondary: 120 73% 35%; /* Green */
+    --theme-accent: 210 100% 20%;   /* Navy Blue */
     --theme-dark: 222 47% 11%;
     --theme-light: 210 40% 98%;
     --theme-muted: 215 16% 47%;
@@ -53,29 +53,29 @@
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 35 92% 58%; /* Saffron */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 221 83% 41%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 120 73% 35%; /* Green */
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 35 92% 51%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 210 100% 20%; /* Navy Blue */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 224 76% 48%;
+    --ring: 120 73% 35%;
 
-    /* Theme-specific colors in dark mode */
-    --theme-primary: 217 91% 60%;
-    --theme-secondary: 221 83% 41%;
-    --theme-accent: 35 92% 51%;
+    /* Tiranga Theme Colors - Dark Mode */
+    --theme-primary: 35 92% 58%;
+    --theme-secondary: 120 73% 35%;
+    --theme-accent: 210 100% 20%;
     --theme-dark: 210 40% 98%;
     --theme-light: 222 47% 11%;
     --theme-muted: 215 20% 65%;
@@ -91,7 +91,6 @@
   }
 }
 
-/* Custom styles for the theme */
 .bg-theme-gradient {
   background: linear-gradient(135deg, hsl(var(--theme-primary)) 0%, hsl(var(--theme-secondary)) 100%);
 }

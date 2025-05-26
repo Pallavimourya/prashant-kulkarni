@@ -30,12 +30,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-theme-dark text-white py-12">
+    <footer className="bg-gradient-to-br from-[#FF9933] via-white to-[#138808] text-[#000080] py-12">
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <h3 className="text-xl font-bold mb-4">Prashant Kulkarni</h3>
-            <p className="text-gray-400 mb-6">Parallel Entrepreneur | Innovator | Speaker | Thinker</p>
+            <h3 className="text-xl font-bold mb-4 text-[#000080]">Prashant Kulkarni</h3>
+            <p className="text-[#000080]/80 mb-6">Parallel Entrepreneur | Innovator | Speaker | Thinker</p>
             <div className="flex flex-wrap gap-4">
               <SocialLink href="https://x.com/zuperprashant" icon={<Twitter size={18} />} label="Twitter" />
               <SocialLink href="https://www.facebook.com/zuperprashant/" icon={<Facebook size={18} />} label="Facebook" />
@@ -49,40 +49,40 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4 text-[#000080]">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/about" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   About Me
                 </Link>
               </li>
               <li>
-                <Link href="/mentorship" className="text-gray-400 hover:text-white transition-colors">
-                Mentorship
+                <Link href="/mentorship" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
+                  Mentorship
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/events" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   Speaking Engagements
                 </Link>
               </li>
               <li>
-                <Link href="/press-kit" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/press-kit" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   Press Kit
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/gallery" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/ideas" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/ideas" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   Blog & Ideas
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact" className="text-[#000080]/80 hover:text-[#000080] transition-colors">
                   Contact
                 </Link>
               </li>
@@ -90,18 +90,18 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">Sign up for ideas and updates from Prashant Kulkarni.</p>
+            <h3 className="text-xl font-bold mb-4 text-[#000080]">Newsletter</h3>
+            <p className="text-[#000080]/80 mb-4">Sign up for ideas and updates from Prashant Kulkarni.</p>
             <form className="space-y-3">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full px-4 py-2 rounded-md bg-theme-primary/20 text-white border border-theme-primary/30 focus:outline-none focus:ring-2 focus:ring-theme-accent"
+                className="w-full px-4 py-2 rounded-md bg-white/80 text-[#000080] border border-[#000080]/30 focus:outline-none focus:ring-2 focus:ring-[#000080]"
                 required
               />
               <button
                 type="submit"
-                className="w-full bg-theme-accent text-white font-medium py-2 rounded-md hover:bg-theme-accent/90 transition-colors"
+                className="w-full bg-[#000080] text-white font-medium py-2 rounded-md hover:bg-[#000080]/90 transition-colors"
               >
                 Subscribe
               </button>
@@ -109,13 +109,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-theme-primary/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© {currentYear} Prashant Kulkarni. All rights reserved.</p>
+        <div className="border-t border-[#000080]/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-[#000080]/80 text-sm">© {currentYear} Prashant Kulkarni. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy-policy" className="text-gray-400 text-sm hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="text-[#000080]/80 text-sm hover:text-[#000080] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms-of-use" className="text-gray-400 text-sm hover:text-white transition-colors">
+            <Link href="/terms-of-use" className="text-[#000080]/80 text-sm hover:text-[#000080] transition-colors">
               Terms of Use
             </Link>
           </div>
@@ -124,11 +124,12 @@ export default function Footer() {
     </footer>
   )
 }
+
 function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
     <Link
       href={href}
-      className="bg-theme-primary/20 p-2 rounded-full hover:bg-theme-primary/40 transition-colors"
+      className="bg-[#000080]/20 p-2 rounded-full hover:bg-[#000080]/40 transition-colors text-[#000080]"
       aria-label={label}
     >
       {icon}

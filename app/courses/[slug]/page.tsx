@@ -440,7 +440,7 @@ export default function CoursePage({ params }: CoursePageProps) {
 
         <div className="container mx-auto px-4 relative">
           <div className="max-w-6xl mx-auto">
-            <Card className="bg-gradient-to-br from-orange-400 via-yellow-400 to-orange-500 border-0 overflow-hidden">
+            <Card className="bg-gradient-to-br from-orange-400 via-white-400 to-green-500 border-0 overflow-hidden">
               <CardContent className="p-0">
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
                   {/* Content */}
